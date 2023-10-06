@@ -1,8 +1,15 @@
-<!DOCTYPE HTML>
+<%-- 
+    Document   : about
+    Created on : Jun 17, 2022, 11:03:08 AM
+    Author     : ACER
+--%>
+
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<!DOCTYPE html>
 <html>
     <head>
-        <title>My Teams</title>
-        <meta charset="utf-8" />
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>Our Team</title>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css" />
         <link rel="stylesheet" href="assets/css/main.css" />
@@ -17,8 +24,8 @@
                 <div class="inner">
 
                     <!-- Logo -->
-                    <a href="index.html" class="logo">
-                        <span class="fa fa-book"></span> <span class="title">Book Store</span>
+                    <a href="index.jsp" class="logo">
+                        <span class="fa fa-book"></span> <span class="title">IIBOOK</span>
                     </a>
 
                     <!-- Nav -->
@@ -35,13 +42,13 @@
             <nav id="menu">
                 <h2>Menu</h2>
                 <ul>
-                    <li><a href="index.html">Home</a></li>
+                    <li><a href="index.jsp">Home</a></li>
 
-                    <li><a href="products.html">Products</a></li>
+                    <li><a href="products.jsp">Products</a></li>
 
-                    <li><a href="checkout.html">Checkout</a></li>
+                    <li><a href="checkout.jsp">Checkout</a></li>
 
-                    <li><a href="about.html">About</a></li>
+                    <li><a href="about.jsp">About</a></li>
                 </ul>
             </nav>
 

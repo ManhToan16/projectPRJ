@@ -1,4 +1,4 @@
-# Hoàng Mạnh Toàn
+# Group 3 - Book Online Store
 ---
 
 ## **Demo** 
@@ -28,4 +28,4 @@
 
 ## **Author**
 ---
-Trinity
+HLV

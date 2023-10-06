@@ -1,8 +1,15 @@
-<!DOCTYPE HTML>
+<%-- 
+    Document   : product-details
+    Created on : Jun 15, 2022, 10:59:59 AM
+    Author     : ACER
+--%>
+
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<!DOCTYPE html>
 <html>
     <head>
-        <title>Your Book</title>
-        <meta charset="utf-8" />
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>YOUR BOOK</title>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css" />
         <link rel="stylesheet" href="assets/css/main.css" />
@@ -17,8 +24,8 @@
                 <div class="inner">
 
                     <!-- Logo -->
-                    <a href="index.html" class="logo">
-                        <span class="fa fa-book"></span> <span class="title">Book Store</span>
+                    <a href="index.jsp" class="logo">
+                        <span class="fa fa-book"></span> <span class="title">IIBOOK</span>
                     </a>
 
                     <!-- Nav -->
@@ -35,13 +42,13 @@
             <nav id="menu">
                 <h2>Menu</h2>
                 <ul>
-                    <li><a href="index.html">Home</a></li>
+                    <li><a href="index.jsp">Home</a></li>
 
-                    <li><a href="products.html" class="active">Products</a></li>
+                    <li><a href="products.jsp" class="active">Products</a></li>
 
-                    <li><a href="checkout.html">Checkout</a></li>
+                    <li><a href="checkout.jsp">Checkout</a></li>
 
-                    <li><a href="about.html">About</a></li>
+                    <li><a href="about.jsp">About</a></li>
                 </ul>
             </nav>
 
@@ -106,47 +113,47 @@
                         <section class="tiles">
                             <article class="style2">
                                 <span class="image">
-                                  <img src="images/product-2-720x480.jpg" alt="" />
+                                    <img src="images/product-2-720x480.jpg" alt="" />
                                 </span>
-                                <a href="product-details.html">
-                                  <h2>To Kill A Mockingbird</h2>
-                  
-                                  <p><del>$19.00</del> <strong>$19.00</strong></p>
-                  
-                                  <p>
-                                    'Shoot all the bluejays you want, if you can hit 'em, but
-                                    remember it's a sin to kill a mockingbird.'
-                                  </p>
+                                <a href="product-details.jsp">
+                                    <h2>To Kill A Mockingbird</h2>
+
+                                    <p><del>$19.00</del> <strong>$19.00</strong></p>
+
+                                    <p>
+                                        'Shoot all the bluejays you want, if you can hit 'em, but
+                                        remember it's a sin to kill a mockingbird.'
+                                    </p>
                                 </a>
-                              </article>
-                              <article class="style3">
+                            </article>
+                            <article class="style3">
                                 <span class="image">
-                                  <img src="images/product-3-720x480.jpg" alt="" />
+                                    <img src="images/product-3-720x480.jpg" alt="" />
                                 </span>
-                                <a href="product-details.html">
-                                  <h2>The Godfather</h2>
-                  
-                                  <p><del>$19.00</del> <strong>$19.00</strong></p>
-                  
-                                  <p>“I'll make him an offer he can't refuse.”</p>
+                                <a href="product-details.jsp">
+                                    <h2>The Godfather</h2>
+
+                                    <p><del>$19.00</del> <strong>$19.00</strong></p>
+
+                                    <p>“I'll make him an offer he can't refuse.”</p>
                                 </a>
-                              </article>
-                  
-                              <article class="style4">
+                            </article>
+
+                            <article class="style4">
                                 <span class="image">
-                                  <img src="images/product-4-720x480.jpg" alt="" />
+                                    <img src="images/product-4-720x480.jpg" alt="" />
                                 </span>
-                                <a href="product-details.html">
-                                  <h2>Tắt Đèn</h2>
-                  
-                                  <p><del>$19.00</del> <strong>$19.00</strong></p>
-                  
-                                  <p>
-                                    “Thà ngồi tù. Để cho chúng nó làm tình làm tội mãi thế, tôi
-                                    không chịu được”
-                                  </p>
+                                <a href="product-details.jsp">
+                                    <h2>Tắt Đèn</h2>
+
+                                    <p><del>$19.00</del> <strong>$19.00</strong></p>
+
+                                    <p>
+                                        “Thà ngồi tù. Để cho chúng nó làm tình làm tội mãi thế, tôi
+                                        không chịu được”
+                                    </p>
                                 </a>
-                              </article>
+                            </article>
                         </section>
                     </div>
                 </div>
