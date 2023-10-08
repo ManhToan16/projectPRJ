@@ -38,13 +38,13 @@ Author     : ACER
                                         </p>
                                     </div>
                                 </div>
-                                <form action="#" class="signin-form">
+                                <form action="Login" method="get" class="signin-form">
                                     <div class="form-group mt-3">
-                                        <input type="text" class="form-control" required>
+                                        <input type="text" name="account" class="form-control" required>
                                         <label class="form-control-placeholder" for="username">Username</label>
                                     </div>
                                     <div class="form-group">
-                                        <input id="password-field" type="password" class="form-control" required>
+                                        <input id="password-field" name="pass" type="password" class="form-control" required>
                                         <label class="form-control-placeholder" for="password">Password</label>
                                         <span toggle="#password-field" class="fa fa-fw fa-eye field-icon toggle-password"></span>
                                     </div>
