@@ -10,7 +10,7 @@ Author     : ACER
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Login</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
 
         <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700&display=swap" rel="stylesheet">
 
@@ -21,6 +21,11 @@ Author     : ACER
     </head>
     <body>
         <section class="ftco-section">
+            <div class="row justify-content-center">
+                <div class="col-md-6 text-center mb-5">
+                    <h2 class="heading-section"><span class="fa fa-book"></span>IIBOOK</h2>
+                </div>
+            </div>
             <div class="container">
                 <div class="row justify-content-center">
                     <div class="col-md-7 col-lg-5">
