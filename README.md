@@ -1,13 +1,18 @@
-# Group 3 - Book Online Store
+# Hoàng Mạnh Toàn
 ---
 
 ## **Demo** 
 ---
 > **Khách hàng**
 
-1. Trang chủ 
+1. Đăng nhập
 
-![image](https://user-images.githubusercontent.com/53229758/172412202-94730a5e-7398-4174-a488-392495e33ec7.png)
+![image](https://user-images.githubusercontent.com/53229758/174229170-18821909-ce4d-406a-8e29-42863e1fb365.png)
+
+
+2.  Trang chủ
+
+![image](https://user-images.githubusercontent.com/53229758/174229362-35d33ecd-709c-4125-953f-f43ced66f22b.png)
 
 
 2. Menu bar
@@ -16,11 +21,11 @@
 
 3. Sản phẩm
 
-![image](https://user-images.githubusercontent.com/53229758/172412605-1f099276-ee92-449d-a63a-566de4306a76.png)
+![image](https://user-images.githubusercontent.com/53229758/174229452-ca03cc8e-2442-4563-a452-b17bbd459fee.png)
 
 4. Chọn sản phẩm, loại hình, số lượng và đưa vào giỏ hàng
 
-![image](https://user-images.githubusercontent.com/53229758/172412688-5ac0b85a-2bc2-4391-9b37-3a90ea826aa4.png)
+![image](https://user-images.githubusercontent.com/53229758/174229489-2e094bab-4673-4f32-976d-7bfd50010caa.png)
 
 5. Trong mục Checkout, điền thông tin cá nhân và tiến hành thanh toán 
 
@@ -28,4 +33,4 @@
 
 ## **Author**
 ---
-HLV
+HMT
