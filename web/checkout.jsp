@@ -9,7 +9,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>CHECKOUT</title>
+        <title>Checkout</title>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css" />
         <link rel="stylesheet" href="assets/css/main.css" />
@@ -100,13 +100,13 @@
                     <section>
                         <h2>Contact Info</h2>
                         <ul class="alt">
-                            <li><span class="fa fa-github"></span> <a href="https://github.com/nekon0/Trinity">Our Project</a></li>
+                            <li><span class="fa fa-github"></span> <a href="https://github.com/nekon0/IIBOOK">Our Project</a></li>
                             <li><span class="fa fa-map-pin"></span> <a href="https://goo.gl/maps/ojwCjTqRteiA4B9U7"> DE336, FBT University</a></li>
                         </ul>
                     </section>
 
                     <ul class="copyright">
-                        <li>Trinity </li>
+                        <li>HLV </li>
                     </ul>
                 </div>
             </footer>

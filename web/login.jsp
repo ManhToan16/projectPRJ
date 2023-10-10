@@ -9,7 +9,7 @@ Author     : ACER
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Login</title>
+        <title>Welcome to IIBOOK</title>
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
         <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700&display=swap" rel="stylesheet">

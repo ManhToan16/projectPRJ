@@ -80,12 +80,12 @@
                     <section>
                         <h2>Contact Info</h2>
                         <ul class="alt">
-                            <li><span class="fa fa-github"></span> <a href="https://github.com/nekon0/Trinity">Our Project</a></li>
+                            <li><span class="fa fa-github"></span> <a href="https://github.com/nekon0/IIBOOK">Our Project</a></li>
                             <li><span class="fa fa-map-pin"></span> <a href="https://goo.gl/maps/ojwCjTqRteiA4B9U7"> DE336, FBT University</a></li>
                         </ul>
                     </section>
                     <ul class="copyright">
-                        <li> Trinity </li>
+                        <li> HLV </li>
                     </ul>
                 </div>
             </footer>

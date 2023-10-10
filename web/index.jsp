@@ -346,7 +346,7 @@
                         <ul class="alt">
                             <li>
                                 <span class="fa fa-github"></span>
-                                <a href="https://github.com/nekon0/Trinity">Our Project</a>
+                                <a href="https://github.com/nekon0/IIBOOK">Our Project</a>
                             </li>
                             <li>
                                 <span class="fa fa-map-pin"></span>
@@ -358,7 +358,7 @@
                     </section>
 
                     <ul class="copyright">
-                        <li>Trinity</li>
+                        <li>HLV</li>
                     </ul>
                 </div>
             </footer>

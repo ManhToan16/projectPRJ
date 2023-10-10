@@ -9,7 +9,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>YOUR BOOK</title>
+        <title>Your Book</title>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css" />
         <link rel="stylesheet" href="assets/css/main.css" />
@@ -70,19 +70,7 @@
 
                                 <p>100 editions of the best fiction in English, from the eighteenth century and the very first novels to the beginning of the First World War.</p>
 
-                                <div class="row">
-                                    <div class="col-sm-4">
-                                        <label class="control-label">Version</label>
-
-                                        <div class="form-group">
-                                            <select>
-                                                <option value="0">Paper back</option>
-                                                <option value="1">Ebook</option>
-                                                <option value="2">Audio download</option>
-                                            </select>
-                                        </div>
-                                    </div>
-
+                                <div class="row">                                  
                                     <div class="col-sm-8">
                                         <label class="control-label">Quantity</label>
 
@@ -165,13 +153,13 @@
                     <section>
                         <h2>Contact Info</h2>
                         <ul class="alt">
-                            <li><span class="fa fa-github"></span> <a href="https://github.com/nekon0/Trinity">Our Project</a></li>
+                            <li><span class="fa fa-github"></span> <a href="https://github.com/nekon0/IIBOOK">Our Project</a></li>
                             <li><span class="fa fa-map-pin"></span> <a href="https://goo.gl/maps/ojwCjTqRteiA4B9U7"> DE336, FBT University</a></li>
                         </ul>
                     </section>
 
                     <ul class="copyright">
-                        <li> Trinity </li>
+                        <li> HLV </li>
                     </ul>
                 </div>
             </footer>
