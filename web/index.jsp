@@ -25,7 +25,7 @@
                 <div class="inner">
                     <!-- Logo -->
                     <a href="index.jsp" class="logo">
-                        <span class="fa fa-book"></span>
+                        <span class="fa fa-book "></span>
                         <span class="title">IIBOOK</span>
                     </a>
                         
