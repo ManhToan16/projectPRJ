@@ -4,6 +4,7 @@ Created on : Jun 7, 2022, 9:18:12 PM
 Author     : ACER
 --%>
 
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -43,16 +44,22 @@ Author     : ACER
                                         </p>
                                     </div>
                                 </div>
-                                <form action="Login" method="get" class="signin-form">
+                                <form action="LoginController" method="POST" class="signin-form">
+                                    <input type="hidden" name="origin" value="${origin}">
                                     <div class="form-group mt-3">
-                                        <input type="text" name="account" class="form-control" required>
+                                        <input type="text" name="username" class="form-control" required>
                                         <label class="form-control-placeholder" for="username">Username</label>
                                     </div>
                                     <div class="form-group">
-                                        <input id="password-field" name="pass" type="password" class="form-control" required>
+                                        <input id="password-field" name="password" type="password" class="form-control" required>
                                         <label class="form-control-placeholder" for="password">Password</label>
                                         <span toggle="#password-field" class="fa fa-fw fa-eye field-icon toggle-password"></span>
                                     </div>
+                                    <% if (request.getAttribute("error") != null) {%>
+                                    <div class="w-100">
+                                        <%=request.getAttribute("error")%>
+                                    </div>
+                                    <%}%>
                                     <div class="form-group">
                                         <button type="submit" class="form-control btn btn-primary rounded submit px-3">Sign In</button>
                                     </div>
@@ -64,7 +71,7 @@ Author     : ACER
                                             </label>
                                         </div>
                                         <div class="w-50 text-md-right">
-                                            <a href="#">Forgot Password</a>
+                                            <a href="ForgotController">Forgot Password</a>
                                         </div>
                                     </div>
                                 </form>

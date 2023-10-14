@@ -1,4 +1,4 @@
-USE [master]
+﻿USE [master]
 GO
 /****** Object:  Database [IIBOOK] ******/
 IF EXISTS (SELECT name FROM master.dbo.sysdatabases WHERE name = N'IIBOOK')
@@ -64,13 +64,13 @@ GO
 SET QUOTED_IDENTIFIER ON
 GO
 CREATE TABLE [dbo].[Book](
-	[bookid] [char](9) NOT NULL,
-	[title] [nvarchar](80) NOT NULL,
-	[author] [nvarchar](80) NULL,
-	[type] [nvarchar](50) NOT NULL,
-	[price] decimal(10,2) NOT NULL,
-	[discounttype] varchar(40) not null,
-	[image] [varchar](500) NULL,
+	[bookid] [char](4) NOT NULL,
+	[title] [nvarchar](80),
+	[author] [nvarchar](80),
+	[type] [nvarchar](50),
+	[price] decimal(10,2),
+	[discounttype] varchar(40),
+	[image] [varchar](500),
  CONSTRAINT [PK_book] PRIMARY KEY CLUSTERED 
 (
 	[bookid] ASC
@@ -84,7 +84,7 @@ GO
 SET QUOTED_IDENTIFIER ON
 GO
 CREATE TABLE [dbo].[User](
-	[userid] [char](9) NOT NULL,
+	[userid] [char](4) NOT NULL,
 	[fullname] [nvarchar](50),
 	[gender] [bit],
 	[dob] [date],
@@ -104,8 +104,8 @@ GO
 SET QUOTED_IDENTIFIER ON
 GO
 CREATE TABLE [dbo].[Order](
-	[orderid] [char](9) NOT NULL,
-	[userid] [char](9) NOT NULL,
+	[orderid] [char](4) NOT NULL,
+	[userid] [char](4) NOT NULL,
 	[orderdate] [date],
 	[subtotal] decimal(10,2) ,
 	[shipping] decimal(10,2) ,
@@ -124,22 +124,19 @@ GO
 SET QUOTED_IDENTIFIER ON
 GO
 CREATE TABLE [dbo].[OrderItem](
-	[orderid] [char](9) NOT NULL,
-	[bookid] [char](9) NOT NULL,
+	[orderid] [char](4) NOT NULL,
+	[bookid] [char](4) NOT NULL,
 	quantity [smallint] ,
 	price decimal(10,2) ,
-CONSTRAINT [PK_orderitem] PRIMARY KEY CLUSTERED 
-(
-	[orderid] ASC
-)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
-) ON [PRIMARY]
+)
+GO
 /****** Object:  Table [dbo].[stock]    IIBOOK ******/
 SET ANSI_PADDING ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
 CREATE TABLE [dbo].[Stock](
-	bookid [char](9) NOT NULL,
+	bookid [char](4) NOT NULL,
 	used [smallint] ,
 	total [smallint] ,
 CONSTRAINT [PK_stock] PRIMARY KEY CLUSTERED 
@@ -156,7 +153,7 @@ GO
 CREATE TABLE [dbo].[Admin](
 	[username] [varchar](50) NOT NULL,
 	[password] [varchar](50) NOT NULL,
-	[email] [varchar](50) NOT NULL,
+	[email] [varchar](50) NULL,
 	[status] [varchar](50)
 	
 CONSTRAINT [PK_admin] PRIMARY KEY NONCLUSTERED 
@@ -185,8 +182,8 @@ GO
 SET QUOTED_IDENTIFIER ON
 GO
 CREATE TABLE [dbo].[BookIntro](
-	bookid char(9) not null,
-	intro nvarchar(500) not null
+	bookid char(4) not null,
+	intro nvarchar(1000) not null
 CONSTRAINT [PK_bookintro] PRIMARY KEY NONCLUSTERED 
 (
 	bookid ASC
@@ -221,6 +218,39 @@ GO
 --ALTER TABLE [dbo].[user]  WITH CHECK ADD  CONSTRAINT [CK_user_id] CHECK  (([user_id] like '[A-Z][A-Z][A-Z][1-9][0-9][0-9][0-9][0-9][FM]' OR [user_id] like '[A-Z]-[A-Z][1-9][0-9][0-9][0-9][0-9][FM]'))
 GO
 
+INSERT [dbo].[Admin] ([username], [password], [email], [status]) VALUES (N'admin', N'admin', NULL, N'Active')
+GO
+INSERT [dbo].[Admin] ([username], [password], [email], [status]) VALUES (N'vinh', N'8888', N'vinhvn102@gmail.com', N'Active')
+GO
+INSERT [dbo].[User] ([userid], [fullname], [gender], [dob], [email], [phone], [address], [username], [password]) VALUES (N'US01', N'Vinh Nguyen', 1, CAST(N'2002-12-25' AS Date), N'vinhvn102@gmail.com', N'0382132025', N'FBT University ', N'user', N'1234')
+GO
+INSERT [dbo].[Discount] ([discounttype], [flag], [notes], [discount]) VALUES (N'NewBook', NULL, N'Brand new spice', CAST(10.00 AS Decimal(4, 2)))
+GO
+INSERT [dbo].[Discount] ([discounttype], [flag], [notes], [discount]) VALUES (N'Bronze', NULL, N'Non-prime', CAST(10.00 AS Decimal(4, 2)))
+GO
+INSERT [dbo].[Discount] ([discounttype], [flag], [notes], [discount]) VALUES (N'Silver', NULL, N'Mediocre', CAST(15.00 AS Decimal(4, 2)))
+GO
+INSERT [dbo].[Discount] ([discounttype], [flag], [notes], [discount]) VALUES (N'Gold', NULL, N'Top-tier', CAST(20.00 AS Decimal(4, 2)))
+GO
+INSERT [dbo].[Discount] ([discounttype], [flag], [notes], [discount]) VALUES (N'Ruby', NULL, N'PRIME', CAST(25.00 AS Decimal(4, 2)))
+GO
+INSERT [dbo].[Discount] ([discounttype], [flag], [notes], [discount]) VALUES (N'GoodDeal', 3, N'Rising Star', CAST(10.00 AS Decimal(4, 2)))
+GO
+INSERT [dbo].[Discount] ([discounttype], [flag], [notes], [discount]) VALUES (N'BigDeal', 10, N'Meteor', CAST(20.00 AS Decimal(4, 2)))
+GO
+INSERT [dbo].[Book] ([bookid], [title], [author], [type], [price], [discounttype], [image]) VALUES (N'LN01', N'Classroom Of The Elite', N'Kinu', N'Manga & LN', CAST(27.00 AS Decimal(10, 2)), N'NewBook', N'https://cdn.novelupdates.com/images/2017/02/cover00219.jpeg')
+GO
+INSERT [dbo].[Order] ([orderid], [userid], [orderdate], [subtotal], [shipping], [total], [shipper], [status]) VALUES (N'OR01 ', N'US01', CAST(N'2022-06-26' AS Date), NULL, NUll, NULL, N'Fast Deliver', N'Processing')
+GO
+INSERT [dbo].[OrderItem] ([orderid], [bookid], [quantity], [price]) VALUES (N'OR01', N'LN01', 3, NULL)
+GO
+INSERT [dbo].[BookIntro] ([bookid], [intro]) VALUES (N'LN01', N'Kōdo Ikusei Senior High School, a leading prestigious school with state-of-the-art facilities where nearly 100% of students go on to university or find employment. The students there have the freedom to wear any hairstyle and bring any personal effects they desire. Kōdo Ikusei is a paradise-like school, but the truth is that only the most superior of students receive favorable treatment.\nThe protagonist Kiyotaka Ayanokōji is a student of D-class, which is where the school dumps its “inferior” students in order to ridicule them. For a certain reason, Kiyotaka was careless on his entrance examination, and was put in D-class. After meeting Suzune Horikita and Kikyō Kushida, two other students in his class, Kiyotaka’s situation begins to change.
+
+')
+GO
+
+INSERT [dbo].[Stock] ([bookid], [used], [total]) VALUES (N'LN01', 3, 20)
+GO
 USE [master]
 GO
 ALTER DATABASE [IIBOOK] SET  READ_WRITE 
