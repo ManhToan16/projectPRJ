@@ -4,11 +4,9 @@
  */
 package context;
 
-import Model.User;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
-import java.text.SimpleDateFormat;
 import java.util.Random;
 import java.util.stream.IntStream;
 
@@ -25,20 +23,11 @@ public class UserDAO {
     Connection cnn; // ket noi db
     Statement stm; // thuc thi cac cau lenh sql
     ResultSet rs; // luu tru va xu ly du lieu
-    
-    private void connectDB() {
-        try{
-            cnn=(new DBContext().getConnection());
-            System.out.println("Connect successfully!");
-        } catch (Exception e){
-            System.out.println("Connect error:"+e.getMessage());
-        }
-    }
-    
-    public boolean checkLogin(String username, String password){
+    public boolean checkLogin(String acc, String pass){
+        // return "admin".equalsIgnoreCase(account) && "123".equals(password);
         try{
             stm= cnn.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE,ResultSet.CONCUR_UPDATABLE);
-            String strSelect="select * from User where username='"+username+"' and password='"+password+"'";
+            String strSelect="select * from tblUser where account='"+acc+"' and pass='"+pass+"'";
             rs = stm.executeQuery(strSelect);
             while(rs.next()){
                 return true;
@@ -48,38 +37,24 @@ public class UserDAO {
         }
         return false;
     }
-
-    public User getUser(String key, String pass) {
-        try{
-            stm= cnn.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE,ResultSet.CONCUR_UPDATABLE);
-            String sql="Select * from [User] where username='"+key+"' AND password='"+pass+"'";
-            rs=stm.executeQuery(sql);
-            while(rs.next()){
-                String userid = rs.getString(1);
-                String name = rs.getString(2);
-                String gender = rs.getBoolean(3)? "Male" : "Female";
-                SimpleDateFormat f = new SimpleDateFormat("dd/mm/yyyy");
-                String dob = f.format(rs.getDate(4));
-                String email = rs.getString(5);
-                String phone = rs.getString(6);
-                String address = rs.getString(7);
-                User u = new User(userid, name, gender, dob, email, phone, address, key, pass);
-                return u;
-            }
-        }catch(Exception e){
-            System.out.println("getUser Error:"+e.getMessage());
-        }
-        return null;
-    }
     
-    public String getNameByAccount(String username) {
+    private void connectDB() {
+        try{
+            cnn=(new DBContext().getConnection());
+            System.out.println("Connect successfully!");
+        } catch (Exception e){
+            System.out.println("Connect error:"+e.getMessage());
+        }
+    }
+
+    public String getNameByAccount(String acc) {
         String name="";
         try{
             stm= cnn.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE,ResultSet.CONCUR_UPDATABLE);
-            String strSelect="select * from User where username='"+username+"'";
+            String strSelect="select * from tblUser where account='"+acc+"'";
             rs = stm.executeQuery(strSelect);
             while(rs.next()){
-                name = rs.getString(2);
+                name = rs.getString(3);
             }
         }catch(Exception e){
             System.out.println("getNameByAccount Error:"+e.getMessage());
@@ -87,10 +62,10 @@ public class UserDAO {
         return name;
     }
 
-    public boolean checkAccount(String username) {
+    public boolean checkAccount(String acc) {
         try{
             stm= cnn.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE,ResultSet.CONCUR_UPDATABLE);
-            String strSelect="select * from User where username='"+username+"'";
+            String strSelect="select * from tblUser where account='"+acc+"'";
             rs = stm.executeQuery(strSelect);
             while(rs.next()){
                 return true;
@@ -114,10 +89,10 @@ public class UserDAO {
         return new String(index);
     }
 
-    public boolean checkAccDOB(String username, String dob) {
+    public boolean checkAccDOB(String acc, String dob) {
         try{
             stm= cnn.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE,ResultSet.CONCUR_UPDATABLE);
-            String strSelect="select * from User where username='"+username+"' and dateofbirth='"+dob+"'";
+            String strSelect="select * from tblUser where account='"+acc+"' and dateofbirth='"+dob+"'";
             rs = stm.executeQuery(strSelect);
             while(rs.next()){
                 return true;
@@ -128,14 +103,14 @@ public class UserDAO {
         return false;
     }
 
-    public void updatePass(String username, String newPass) {
+    public void updatePass(String acc, String newPass) {
         try{
             stm= cnn.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE,ResultSet.CONCUR_UPDATABLE);
-            String strUpdate="update User set password='"+newPass+"' where username='"+username+"'";
+            String strUpdate="update tblUser set pass='"+newPass+"' where account='"+acc+"'";
             stm.execute(strUpdate);
         }catch(Exception e){
             System.out.println("updatePass Error:"+e.getMessage());
         }
     }
-
+    
 }

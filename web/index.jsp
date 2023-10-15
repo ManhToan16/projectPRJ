@@ -25,7 +25,7 @@
                 <div class="inner">
                     <!-- Logo -->
                     <a href="index.jsp" class="logo">
-                        <span class="fa fa-book "></span>
+                        <span class="fa fa-book"></span>
                         <span class="title">IIBOOK</span>
                     </a>
                         
@@ -50,8 +50,6 @@
                     <li><a href="checkout.jsp">Checkout</a></li>
 
                     <li><a href="about.jsp">About</a></li>
-                    <li><a href="LoginController?origin=index.jsp">Login</a>
-                        /<a href="SignupController?origin=index.jsp">Signup</a></li>
                 </ul>
             </nav>
 
