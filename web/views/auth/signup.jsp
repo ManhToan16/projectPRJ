@@ -1,15 +1,15 @@
 <%-- 
-Document   : index
-Created on : Jun 7, 2022, 9:18:12 PM
-Author     : ACER
+    Document   : signup
+    Created on : Jun 30, 2022, 5:15:57 PM
+    Author     : ACER
 --%>
-
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Welcome to IIBOOK</title>
+        <title>Join us · IIBOOK </title>
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
         <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700&display=swap" rel="stylesheet">
@@ -34,41 +34,42 @@ Author     : ACER
                             <div class="login-wrap p-4 p-md-5">
                                 <div class="d-flex">
                                     <div class="w-100">
-                                        <h3 class="mb-4">Sign In</h3>
-                                    </div>
-                                    <div class="w-100">
-                                        <p class="social-media d-flex justify-content-end">
-                                            <a href="#" class="social-icon d-flex align-items-center justify-content-center"><span class="fa fa-facebook"></span></a>
-                                            <a href="#" class="social-icon d-flex align-items-center justify-content-center"><span class="fa fa-twitter"></span></a>
-                                        </p>
+                                        <h3 class="mb-4">Sign Up</h3>
                                     </div>
                                 </div>
-                                <form action="Login" method="get" class="signin-form">
+                                <form action="Signup" method="POST" class="signin-form">
+                                    <input type="hidden" name="origin" value="${origin}">
                                     <div class="form-group mt-3">
-                                        <input type="text" name="account" class="form-control" required>
+                                        <input type="text" name="name" class="form-control" required>
+                                        <label class="form-control-placeholder" for="name">Full Name</label>
+                                    </div>
+                                    <div class="form-group mt-3">
+                                        <input type="text" name="email" class="form-control" required>
+                                        <label class="form-control-placeholder" for="email">Email</label>
+                                    </div>
+                                    <div class="form-group mt-3">
+                                        <input type="text" name="username" class="form-control" required>
                                         <label class="form-control-placeholder" for="username">Username</label>
                                     </div>
                                     <div class="form-group">
-                                        <input id="password-field" name="pass" type="password" class="form-control" required>
+                                        <input id="password-field" name="password" type="password" class="form-control" required>
                                         <label class="form-control-placeholder" for="password">Password</label>
-                                        <span toggle="#password-field" class="fa fa-fw fa-eye field-icon toggle-password"></span>
                                     </div>
                                     <div class="form-group">
-                                        <button type="submit" class="form-control btn btn-primary rounded submit px-3">Sign In</button>
+                                        <input id="password-field" name="re_password" type="password" class="form-control" required>
+                                        <label class="form-control-placeholder" for="re_password">Re-enter Password</label>
+                                        <span toggle="#password-field" class="fa fa-fw fa-eye field-icon toggle-password"></span>
                                     </div>
-                                    <div class="form-group d-md-flex">
-                                        <div class="w-50 text-left">
-                                            <label class="checkbox-wrap checkbox-primary mb-0">Remember Me
-                                                <input type="checkbox" checked>
-                                                <span class="checkmark"></span>
-                                            </label>
-                                        </div>
-                                        <div class="w-50 text-md-right">
-                                            <a href="#">Forgot Password</a>
-                                        </div>
+                                    <% if (request.getAttribute("error") != null) {%>
+                                    <div class="w-100">
+                                        <%=request.getAttribute("error")%>
+                                    </div>
+                                    <%}%>
+                                    <div class="form-group">
+                                        <button type="submit" class="form-control btn btn-primary rounded submit px-3">Sign Up</button>
                                     </div>
                                 </form>
-                                <p class="text-center">Not a member? <a data-toggle="tab" href="#signup">Sign Up</a></p>
+                                <p class="text-center">Already a member? <a data-toggle="tab" href="Login?origin=${origin}">Log In</a></p>
                             </div>
                         </div>
                     </div>
@@ -83,4 +84,5 @@ Author     : ACER
 
     </body>
 </html>
+
 
