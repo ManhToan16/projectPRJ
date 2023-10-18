@@ -5,27 +5,32 @@
 package Model;
 
 public class Book {
-    private int bookid;
+    private int id;
     private String title, author, type;
+    private int quantity;
     private float price;
-    private String discounttype, image;
+    private boolean issale;
+    private int discount;
+    private String image;
 
-    public Book(int bookid, String title, String author, String type, float price, String discounttype, String image) {
-        this.bookid = bookid;
+    public Book(int id, String title, String author, String type, int quantity,float price, boolean issale, int discount, String image) {
+        this.id = id;
         this.title = title;
         this.author = author;
         this.type = type;
+        this.quantity=quantity;
         this.price = price;
-        this.discounttype = discounttype;
+        this.issale = issale;
+        this.discount = discount;
         this.image = image;
     }
 
-    public int getBookid() {
-        return bookid;
+    public int getId() {
+        return id;
     }
 
-    public void setBookid(int bookid) {
-        this.bookid = bookid;
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getTitle() {
@@ -52,6 +57,14 @@ public class Book {
         this.type = type;
     }
 
+    public int getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
+    }
+
     public float getPrice() {
         return price;
     }
@@ -60,12 +73,20 @@ public class Book {
         this.price = price;
     }
 
-    public String getDiscounttype() {
-        return discounttype;
+    public boolean isIssale() {
+        return issale;
     }
 
-    public void setDiscounttype(String discounttype) {
-        this.discounttype = discounttype;
+    public void setIssale(boolean issale) {
+        this.issale = issale;
+    }
+
+    public int getDiscount() {
+        return discount;
+    }
+
+    public void setDiscount(int discount) {
+        this.discount = discount;
     }
 
     public String getImage() {

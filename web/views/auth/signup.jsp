@@ -3,6 +3,7 @@
     Created on : Jun 30, 2022, 5:15:57 PM
     Author     : ACER
 --%>
+<%@ page session="false"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -30,7 +31,7 @@
                 <div class="row justify-content-center">
                     <div class="col-md-7 col-lg-5">
                         <div class="wrap">
-                            <div class="img" style="background-image: url(images/slider-image-3-1920x700.jpg);"></div>
+                            <div class="img" style="background-image: url(images/slider-image-2-1920x700.jpg);"></div>
                             <div class="login-wrap p-4 p-md-5">
                                 <div class="d-flex">
                                     <div class="w-100">
@@ -40,25 +41,47 @@
                                 <form action="Signup" method="POST" class="signin-form">
                                     <input type="hidden" name="origin" value="${origin}">
                                     <div class="form-group mt-3">
-                                        <input type="text" name="name" class="form-control" required>
-                                        <label class="form-control-placeholder" for="name">Full Name</label>
-                                    </div>
-                                    <div class="form-group mt-3">
-                                        <input type="text" name="email" class="form-control" required>
+                                        <input type="email" name="email" class="form-control" value="${in4.getEmail()}" required>
                                         <label class="form-control-placeholder" for="email">Email</label>
                                     </div>
                                     <div class="form-group mt-3">
-                                        <input type="text" name="username" class="form-control" required>
+                                        <input type="text" name="username" class="form-control" value="${in4.getUsername()}" required>
                                         <label class="form-control-placeholder" for="username">Username</label>
                                     </div>
                                     <div class="form-group">
                                         <input id="password-field" name="password" type="password" class="form-control" required>
                                         <label class="form-control-placeholder" for="password">Password</label>
+                                        <span toggle="#password-field" class="fa fa-fw fa-eye field-icon toggle-password"></span>
                                     </div>
                                     <div class="form-group">
                                         <input id="password-field" name="re_password" type="password" class="form-control" required>
-                                        <label class="form-control-placeholder" for="re_password">Re-enter Password</label>
-                                        <span toggle="#password-field" class="fa fa-fw fa-eye field-icon toggle-password"></span>
+                                        <label class="form-control-placeholder" for="re_password">Confirm Password</label>
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="text" name="phone" class="form-control" value="" required>
+                                        <label class="form-control-placeholder" for="phone">Phone</label>
+                                    </div>
+                                    <div class="form-group mt-3">
+                                        <input type="text" name="name" class="form-control" value="${in4.getName()}" required>
+                                        <label class="form-control-placeholder" for="name">Full Name</label>
+                                    </div>
+                                    <div class="form-group d-md-flex">
+                                        <div class="w-50 text-left">
+                                            <input id="male" type="radio" name="gender" value="male" class="" aria-labelledby="country-option-1" aria-describedby="country-option-1" checked>
+                                            <label for="male" class="block ml-2 text-sm font-medium text-gray-900">
+                                                Male
+                                            </label>
+                                        </div>
+                                        <div class="w-50 text-left">
+                                            <input id="female" type="radio" name="gender" value="female" class="w-4 h-4 border-gray-300 focus:ring-2 focus:ring-blue-300" aria-labelledby="country-option-2" aria-describedby="country-option-2">
+                                            <label for="female" class="block ml-2 text-sm font-medium text-gray-900">
+                                                Female
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                            <label for="birthday" class="text-left">Birthday</label>
+                                            <input type="date" name="birthday" class="text-right" required>
                                     </div>
                                     <% if (request.getAttribute("error") != null) {%>
                                     <div class="w-100">
@@ -69,7 +92,7 @@
                                         <button type="submit" class="form-control btn btn-primary rounded submit px-3">Sign Up</button>
                                     </div>
                                 </form>
-                                <p class="text-center">Already a member? <a data-toggle="tab" href="Login?origin=${origin}">Log In</a></p>
+                                <p class="text-center">Already a member? <a href="Login?origin=${origin}">Log In</a></p>
                             </div>
                         </div>
                     </div>

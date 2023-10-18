@@ -9,7 +9,7 @@ package Model;
  * @author ACER
  */
 public class User {
-    private int userid;
+    private int id;
     private String name, gender, dob, email, phone, address, username, password;
     private boolean is_super;
 
@@ -18,21 +18,21 @@ public class User {
         this.password = password;
     }
 
-    public User(int userid, String name, String gender, String dob, String email, String phone, String address, String acc, String pass) {
-        this.userid = userid;
+    public User(int id, String name, String gender, String dob, String email, String phone, String address, String username, String password) {
+        this.id = id;
         this.name = name;
         this.gender = gender;
         this.dob = dob;
         this.email = email;
         this.phone = phone;
         this.address = address;
-        this.username = acc;
-        this.password = pass;
+        this.username = username;
+        this.password = password;
         this.is_super=false;
     }
 
-    public User(int userid, String name, String gender, String dob, String email, String phone, String address, String username, String password, boolean is_super) {
-        this.userid = userid;
+    public User(int id, String name, String gender, String dob, String email, String phone, String address, String username, String password, boolean is_super) {
+        this.id = id;
         this.name = name;
         this.gender = gender;
         this.dob = dob;
@@ -44,6 +44,14 @@ public class User {
         this.is_super = is_super;
     }
 
+    public User(String name, String email, String username, String password) {
+        this.name = name;
+        this.email = email;
+        this.username = username;
+        this.password = password;
+        this.is_super = false;
+    }
+
     public boolean isIs_super() {
         return is_super;
     }
@@ -52,12 +60,12 @@ public class User {
         this.is_super = is_super;
     }
     
-    public int getUserid() {
-        return userid;
+    public int getId() {
+        return id;
     }
 
-    public void setUserid(int userid) {
-        this.userid = userid;
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getName() {

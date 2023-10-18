@@ -50,8 +50,8 @@
                     <li><a href="checkout.jsp">Checkout</a></li>
 
                     <li><a href="about.jsp">About</a></li>
-                    <li><a href="Login?origin=index.jsp">Login</a>
-                        /<a href="Signup?origin=index.jsp">Signup</a></li>
+                    <li><a href="Login?origin=${origin}">Login</a>
+                        /<a href="Signup?origin=${origin}">Signup</a></li>
                 </ul>
             </nav>
 
@@ -120,7 +120,7 @@
                 <div id="product" class="inner">
                     <!-- About Us -->
                     <header id="inner">
-                        <h1>What spices are you looking for in your book?</h1>
+                        <h1>We offer the best spices for your book</h1>
                         <blockquote>
                             <p>
                                 <i

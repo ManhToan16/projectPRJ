@@ -23,7 +23,7 @@ public class LoginController extends HttpServlet {
             throws ServletException, IOException {
         String referer = (String) request.getParameter("origin");
         request.setAttribute("origin", referer);
-        forward(request, response, "./views/auth/login.jsp");
+        forward(request, response, "/views/auth/login.jsp");
     }
 
     @Override
@@ -37,12 +37,16 @@ public class LoginController extends HttpServlet {
         if (user != null) {
             HttpSession session = request.getSession();
             session.setAttribute("user", user);
-            response.sendRedirect("./"+request.getParameter("origin"));
+            if (user.isIs_super()) {
+                response.sendRedirect("./views/admin/Admin.jsp");
+            } else {
+                response.sendRedirect(request.getParameter("origin"));
+            }
         } else {
             request.setAttribute("error", "Username or password wrong!");
-            forward(request, response, "./views/auth/login.jsp");
+            forward(request, response, "/views/auth/login.jsp");
         }
-        
+
     }
 
     @Override

@@ -7,7 +7,7 @@ package Model;
 
 /* @author ACER */
 public class Order {
-    private int orderid;
+    private int id;
     private int userid;
     private String orderdate;
     private float subtotal;
@@ -16,8 +16,8 @@ public class Order {
     private String shipper;
     private String status;
 
-    public Order(int orderid, int userid, String orderdate, float subtotal, float shipping, float total, String shipper, String status) {
-        this.orderid = orderid;
+    public Order(int id, int userid, String orderdate, float subtotal, float shipping, float total, String shipper, String status) {
+        this.id = id;
         this.userid = userid;
         this.orderdate = orderdate;
         this.subtotal = subtotal;
@@ -35,12 +35,12 @@ public class Order {
         this.status = status;
     }
 
-    public int getOrderid() {
-        return orderid;
+    public int getId() {
+        return id;
     }
 
-    public void setOrderid(int orderid) {
-        this.orderid = orderid;
+    public void setId(int id) {
+        this.id = id;
     }
 
     public int getUserid() {

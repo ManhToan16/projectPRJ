@@ -64,27 +64,42 @@ GO
 SET QUOTED_IDENTIFIER ON
 GO
 CREATE TABLE [dbo].[Book](
-	[bookid] int IDENTITY(1,1) NOT NULL,
+	[id] int IDENTITY(1,1) NOT NULL,
 	[title] [nvarchar](80),
 	[author] [nvarchar](80),
-	[type] [nvarchar](50),
+	[categoryid] int,
+	[quantity] smallint,
 	[price] decimal(10,2),
-	[discounttype] varchar(40),
+	[is_sale] bit,
+	[discount] smallint,
 	[image] [varchar](500),
  CONSTRAINT [PK_book] PRIMARY KEY CLUSTERED 
 (
-	[bookid] ASC
+	[id] ASC
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-
+/****** Object:  Table [dbo].[Category]    IIBOOK ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Category](
+	[id] int identity(1,1) not null,
+	[name] [nvarchar](100),
+	 CONSTRAINT [PK_category] PRIMARY KEY CLUSTERED 
+(
+	id ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
 /****** Object:  Table [dbo].[user] ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
 CREATE TABLE [dbo].[User](
-	[userid] int IDENTITY(1,1) NOT NULL,
+	[id] int IDENTITY(1,1) NOT NULL,
 	[fullname] [nvarchar](50),
 	[gender] [bit],
 	[dob] [date],
@@ -96,7 +111,7 @@ CREATE TABLE [dbo].[User](
 	[is_super] [bit] NOT NULL
 CONSTRAINT [PK_customer] PRIMARY KEY NONCLUSTERED 
 (
-	[userid] ASC
+	[id] ASC
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 /****** Object:  Table [dbo].[order]    IIBOOK ******/
@@ -105,7 +120,7 @@ GO
 SET QUOTED_IDENTIFIER ON
 GO
 CREATE TABLE [dbo].[Order](
-	[orderid] int IDENTITY(1,1) NOT NULL,
+	[id] int IDENTITY(1,1) NOT NULL,
 	[userid] int NOT NULL,
 	[orderdate] [date],
 	[subtotal] decimal(10,2) ,
@@ -115,7 +130,7 @@ CREATE TABLE [dbo].[Order](
 	[status] [nvarchar](50)
  CONSTRAINT [PK_order] PRIMARY KEY CLUSTERED 
 (
-	[orderid] ASC
+	[id] ASC
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
@@ -131,20 +146,6 @@ CREATE TABLE [dbo].[OrderItem](
 	price decimal(10,2) ,
 )
 GO
-/****** Object:  Table [dbo].[stock]    IIBOOK ******/
-SET ANSI_PADDING ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-CREATE TABLE [dbo].[Stock](
-	bookid int NOT NULL,
-	used [smallint] ,
-	total [smallint] ,
-CONSTRAINT [PK_stock] PRIMARY KEY CLUSTERED 
-(
-	[bookid] ASC
-)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
-) ON [PRIMARY]
 
 /****** Object:  Table [dbo].[Discount] ******/
 SET ANSI_NULLS ON
@@ -152,6 +153,7 @@ GO
 SET QUOTED_IDENTIFIER ON
 GO
 CREATE TABLE [dbo].[Discount](
+	id int IDENTITY(1,1) not null,
 	discounttype varchar(40) not null,
 	flag smallint ,
 	notes nvarchar(200),
@@ -174,29 +176,52 @@ CONSTRAINT [PK_bookintro] PRIMARY KEY NONCLUSTERED
 	bookid ASC
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
-------
-ALTER TABLE [dbo].[User] ADD  DEFAULT ('UNKNOWN') FOR [phone]
+/****** Object:  Table [dbo].[Cart]    Script Date: 7/1/2022 1:29:59 PM ******/
+SET ANSI_NULLS ON
 GO
-ALTER TABLE [dbo].[Book] ADD  DEFAULT ('UNDECIDED') FOR [type]
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Cart](
+	[id] [int] IDENTITY(1,1) NOT NULL,
+	[userid] [int] NULL,
+	[bookid] [int] NULL,
+	[quantity] [int] NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+ALTER TABLE [dbo].[Cart]  WITH CHECK ADD FOREIGN KEY([bookid])
+REFERENCES [dbo].[Book] ([id])
+GO
+ALTER TABLE [dbo].[Cart]  WITH CHECK ADD FOREIGN KEY([userid])
+REFERENCES [dbo].[User] ([id])
+GO
+------
+ALTER TABLE [dbo].[User] ADD  DEFAULT (0) FOR [is_super]
+GO
+--ALTER TABLE [dbo].[Book] ADD  DEFAULT ('UNDECIDED') FOR [type]
 GO
 ALTER TABLE [dbo].[Order]  WITH CHECK ADD FOREIGN KEY([userid])
-REFERENCES [dbo].[User] ([userid])
+REFERENCES [dbo].[User] ([id])
 GO
 ALTER TABLE [dbo].[OrderItem]  WITH CHECK ADD FOREIGN KEY([orderid])
-REFERENCES [dbo].[Order] ([orderid])
+REFERENCES [dbo].[Order] ([id])
 GO
 ALTER TABLE [dbo].[OrderItem]  WITH CHECK ADD FOREIGN KEY(bookid)
-REFERENCES [dbo].Book (bookid)
-GO
-ALTER TABLE [dbo].Stock  WITH CHECK ADD FOREIGN KEY(bookid)
-REFERENCES [dbo].Book (bookid)
+REFERENCES [dbo].Book (id)
 GO
 ALTER TABLE [dbo].[BookIntro]  WITH CHECK ADD FOREIGN KEY(bookid)
-REFERENCES [dbo].[Book] (bookid)
+REFERENCES [dbo].[Book] (id)
 GO
-ALTER TABLE [dbo].[Book]  WITH CHECK ADD FOREIGN KEY(discounttype)
-REFERENCES [dbo].[Discount] (discounttype)
+--ALTER TABLE [dbo].[Book]  WITH CHECK ADD FOREIGN KEY(did)
+--REFERENCES [dbo].[Discount] (id)
 GO
+ALTER TABLE [dbo].[Book]  WITH CHECK ADD FOREIGN KEY(categoryid)
+REFERENCES [dbo].[Category] (id)
+GO
+
 --ALTER TABLE [dbo].[authors]  WITH CHECK ADD CHECK  (([au_id] like '[0-9][0-9][0-9]-[0-9][0-9]-[0-9][0-9][0-9][0-9]'))
 GO
 
@@ -214,15 +239,29 @@ INSERT [dbo].[Discount] ([discounttype], [flag], [notes], [discount]) VALUES (N'
 INSERT [dbo].[Discount] ([discounttype], [flag], [notes], [discount]) VALUES (N'GoodDeal', 3, N'Rising Star', CAST(10.00 AS Decimal(4, 2)))
 INSERT [dbo].[Discount] ([discounttype], [flag], [notes], [discount]) VALUES (N'BigDeal', 10, N'Meteor', CAST(20.00 AS Decimal(4, 2)))
 GO
-INSERT [dbo].[Book] ( [title], [author], [type], [price], [discounttype], [image]) VALUES ( N'Classroom Of The Elite', N'Kinu', N'Manga & LN', CAST(27.00 AS Decimal(10, 2)), N'NewBook', N'https://cdn.novelupdates.com/images/2017/02/cover00219.jpeg')
+Insert [dbo].[Category] ([name]) values (N'Crime, Thriller & Mystery'),(N'Fantasy, Horror'),(N'Science/Historical Fiction'),(N'Manga&LN')
+GO
+INSERT [dbo].[Book] ( [title], [author], [categoryid],[quantity], [price],[is_sale], [discount], [image]) VALUES ( N'Classroom Of The Elite', N'Kinugasa', 4,200, CAST(27.00 AS Decimal(10, 2)), 1, 10, N'https://cdn.novelupdates.com/images/2017/02/cover00219.jpeg')
+GO
+INSERT [dbo].[Book] ( [title], [author], [categoryid],[quantity], [price], [is_sale], [discount], [image]) VALUES ( N'Classroom Of The Elite', N'Kinugasa', 4,200, CAST(27.00 AS Decimal(10, 2)), 1, 10, N'https://cdn.novelupdates.com/images/2017/02/cover00219.jpeg')
+GO
+INSERT [dbo].[Book] ( [title], [author], [categoryid],[quantity], [price], [is_sale], [discount], [image]) VALUES ( N'Classroom Of The Elite', N'Kinugasa', 4,200, CAST(27.00 AS Decimal(10, 2)), 1, 10, N'https://cdn.novelupdates.com/images/2017/02/cover00219.jpeg')
+GO
+INSERT [dbo].[Book] ( [title], [author], [categoryid],[quantity], [price], [is_sale], [discount], [image]) VALUES ( N'Classroom Of The Elite', N'Kinugasa', 4,200, CAST(27.00 AS Decimal(10, 2)), 1, 10, N'https://cdn.novelupdates.com/images/2017/02/cover00219.jpeg')
+GO
+INSERT [dbo].[Book] ( [title], [author], [categoryid],[quantity], [price], [is_sale], [discount], [image]) VALUES ( N'Classroom Of The Elite', N'Kinugasa', 4,200, CAST(27.00 AS Decimal(10, 2)), 1, 10, N'https://cdn.novelupdates.com/images/2017/02/cover00219.jpeg')
+GO
+INSERT [dbo].[Book] ( [title], [author], [categoryid],[quantity], [price], [is_sale], [discount], [image]) VALUES ( N'Classroom Of The Elite', N'Kinugasa', 4,200, CAST(27.00 AS Decimal(10, 2)), 1, 10, N'https://cdn.novelupdates.com/images/2017/02/cover00219.jpeg')
+GO
+INSERT [dbo].[Book] ( [title], [author], [categoryid],[quantity], [price], [is_sale], [discount], [image]) VALUES ( N'Classroom Of The Elite', N'Kinugasa', 4,200, CAST(27.00 AS Decimal(10, 2)), 1, 10, N'https://cdn.novelupdates.com/images/2017/02/cover00219.jpeg')
+GO
+INSERT [dbo].[Book] ( [title], [author], [categoryid],[quantity], [price], [is_sale], [discount], [image]) VALUES ( N'Classroom Of The Elite', N'Kinugasa', 4,200, CAST(27.00 AS Decimal(10, 2)), 1, 10, N'https://cdn.novelupdates.com/images/2017/02/cover00219.jpeg')
 GO
 INSERT [dbo].[Order] ( [userid], [orderdate], [subtotal], [shipping], [total], [shipper], [status]) VALUES ( 1, CAST(N'2022-06-26' AS Date), NULL, NUll, NULL, N'Fast Deliver', N'Processing')
 GO
 INSERT [dbo].[OrderItem] ([orderid], [bookid], [quantity], [price]) VALUES (1, 1, 3, NULL)
 GO
 INSERT [dbo].[BookIntro] ([bookid], [intro]) VALUES (1, N'Kōdo Ikusei Senior High School, a leading prestigious school with state-of-the-art facilities where nearly 100% of students go on to university or find employment. The students there have the freedom to wear any hairstyle and bring any personal effects they desire. Kōdo Ikusei is a paradise-like school, but the truth is that only the most superior of students receive favorable treatment.\nThe protagonist Kiyotaka Ayanokōji is a student of D-class, which is where the school dumps its “inferior” students in order to ridicule them. For a certain reason, Kiyotaka was careless on his entrance examination, and was put in D-class. After meeting Suzune Horikita and Kikyō Kushida, two other students in his class, Kiyotaka’s situation begins to change.')
-GO
-INSERT [dbo].[Stock] ([bookid], [used], [total]) VALUES (1, 3, 20)
 GO
 USE [master]
 GO
