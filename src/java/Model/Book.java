@@ -4,25 +4,30 @@
  */
 package Model;
 
+import java.math.BigDecimal;
+
 public class Book {
     private int id;
-    private String title, author, type;
+    private String title, author;
+    private int categoryid;
     private int quantity;
     private float price;
     private boolean issale;
     private int discount;
     private String image;
+    private String description;
 
-    public Book(int id, String title, String author, String type, int quantity,float price, boolean issale, int discount, String image) {
+    public Book(int id, String title, String author,int categoryid, int quantity,float price, boolean issale, int discount, String image, String description) {
         this.id = id;
         this.title = title;
         this.author = author;
-        this.type = type;
+        this.categoryid = categoryid;
         this.quantity=quantity;
         this.price = price;
         this.issale = issale;
         this.discount = discount;
         this.image = image;
+        this.description = description;
     }
 
     public int getId() {
@@ -45,16 +50,24 @@ public class Book {
         return author;
     }
 
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
     public void setAuthor(String author) {
         this.author = author;
     }
 
-    public String getType() {
-        return type;
+    public int getCategoryid() {
+        return categoryid;
     }
 
-    public void setType(String type) {
-        this.type = type;
+    public void setCategoryid(int categoryid) {
+        this.categoryid = categoryid;
     }
 
     public int getQuantity() {
@@ -73,7 +86,7 @@ public class Book {
         this.price = price;
     }
 
-    public boolean isIssale() {
+    public boolean issale() {
         return issale;
     }
 
@@ -97,5 +110,8 @@ public class Book {
         this.image = image;
     }
     
+    public BigDecimal getRealPrice(){
+        return new BigDecimal(this.price*(100-this.discount)*100);
+    }
     
 }

@@ -24,7 +24,7 @@
                 <div class="inner">
 
                     <!-- Logo -->
-                    <a href="index.jsp" class="logo">
+                    <a href="./Home" class="logo">
                         <span class="fa fa-book"></span> <span class="title">IIBOOK</span>
                     </a>
 
@@ -42,11 +42,11 @@
             <nav id="menu">
                 <h2>Menu</h2>
                 <ul>
-                    <li><a href="index.jsp">Home</a></li>
+                    <li><a href="./Home">Home</a></li>
 
                     <li><a href="products.jsp">Products</a></li>
 
-                    <li><a href="checkout.jsp">Checkout</a></li>
+                    <li><a href="./Cart">Checkout</a></li>
 
                     <li><a href="about.jsp">About</a></li>
                 </ul>

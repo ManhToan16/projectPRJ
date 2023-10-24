@@ -58,7 +58,7 @@
                                         <label class="form-control-placeholder" for="re_password">Confirm Password</label>
                                     </div>
                                     <div class="form-group">
-                                        <input type="text" name="phone" class="form-control" value="" required>
+                                        <input type="text" name="phone" class="form-control" value="${in4.getPhone()}" required>
                                         <label class="form-control-placeholder" for="phone">Phone</label>
                                     </div>
                                     <div class="form-group mt-3">
@@ -67,13 +67,13 @@
                                     </div>
                                     <div class="form-group d-md-flex">
                                         <div class="w-50 text-left">
-                                            <input id="male" type="radio" name="gender" value="male" class="" aria-labelledby="country-option-1" aria-describedby="country-option-1" checked>
+                                            <input id="male" type="radio" name="gender" value="Male" class="" aria-labelledby="country-option-1" aria-describedby="country-option-1" checked>
                                             <label for="male" class="block ml-2 text-sm font-medium text-gray-900">
                                                 Male
                                             </label>
                                         </div>
                                         <div class="w-50 text-left">
-                                            <input id="female" type="radio" name="gender" value="female" class="w-4 h-4 border-gray-300 focus:ring-2 focus:ring-blue-300" aria-labelledby="country-option-2" aria-describedby="country-option-2">
+                                            <input id="female" type="radio" name="gender" value="Female" class="w-4 h-4 border-gray-300 focus:ring-2 focus:ring-blue-300" aria-labelledby="country-option-2" aria-describedby="country-option-2">
                                             <label for="female" class="block ml-2 text-sm font-medium text-gray-900">
                                                 Female
                                             </label>

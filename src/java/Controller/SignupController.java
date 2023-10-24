@@ -15,11 +15,12 @@ import jakarta.servlet.http.HttpServletResponse;
 
 /* @author ACER */
 public class SignupController extends HttpServlet {
+    
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String referer = (String) request.getParameter("origin");
+        String referer = request.getParameter("origin");
         request.setAttribute("origin", referer);
         forward(request, response, "/views/auth/signup.jsp");
     }
@@ -31,22 +32,28 @@ public class SignupController extends HttpServlet {
         String email = request.getParameter("email");
         String key = request.getParameter("username");
         String pass = request.getParameter("password");
-        
+        String phone = request.getParameter("phone");
+        String dob = request.getParameter("birthday");
+        String gender = request.getParameter("gender");
+       
         UserDAO ud = new UserDAO();
-        User user = new User(name, email,key, pass);
+        User user = new User(name, gender, dob, email, phone ,key, pass);
         if(!ud.checkDupEmail(email)){
             request.setAttribute("in4", user);
             request.setAttribute("error", "The email had already been registered!");
+            request.setAttribute("origin",request.getParameter("origin"));
             forward(request, response, "/views/auth/signup.jsp");
             return;
         }
         if(!ud.checkDupUsername(key)){
             request.setAttribute("in4", user);
             request.setAttribute("error", "Existed username!");
+            request.setAttribute("origin",request.getParameter("origin"));
             forward(request, response, "/views/auth/signup.jsp");
         }else{
-            ud.insertUser(user);
+            ud.createNewUser(name, gender, dob, email, phone ,key, pass);
             request.setAttribute("error", "Sign up successfully!");
+            request.setAttribute("origin",request.getParameter("origin"));
             forward(request, response, "/views/auth/login.jsp");
         }
     }

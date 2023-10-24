@@ -18,19 +18,6 @@ public class User {
         this.password = password;
     }
 
-    public User(int id, String name, String gender, String dob, String email, String phone, String address, String username, String password) {
-        this.id = id;
-        this.name = name;
-        this.gender = gender;
-        this.dob = dob;
-        this.email = email;
-        this.phone = phone;
-        this.address = address;
-        this.username = username;
-        this.password = password;
-        this.is_super=false;
-    }
-
     public User(int id, String name, String gender, String dob, String email, String phone, String address, String username, String password, boolean is_super) {
         this.id = id;
         this.name = name;
@@ -44,12 +31,14 @@ public class User {
         this.is_super = is_super;
     }
 
-    public User(String name, String email, String username, String password) {
+    public User(String name, String gender, String dob, String email, String phone, String username, String password) {
         this.name = name;
+        this.gender = gender;
+        this.dob = dob;
         this.email = email;
+        this.phone = phone;
         this.username = username;
         this.password = password;
-        this.is_super = false;
     }
 
     public boolean isIs_super() {

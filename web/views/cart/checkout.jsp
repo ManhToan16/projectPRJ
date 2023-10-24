@@ -4,6 +4,7 @@
     Author     : ACER
 --%>
 
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -24,7 +25,7 @@
                 <div class="inner">
 
                     <!-- Logo -->
-                    <a href="index.jsp" class="logo">
+                    <a href="./Home" class="logo">
                         <span class="fa fa-book"></span> <span class="title">IIBOOK</span>
                     </a>
 
@@ -42,11 +43,11 @@
             <nav id="menu">
                 <h2>Menu</h2>
                 <ul>
-                    <li><a href="index.jsp" >Home</a></li>
+                    <li><a href="./Home" >Home</a></li>
 
                     <li><a href="products.jsp">Products</a></li>
 
-                    <li><a href="checkout.jsp" class="active">Checkout</a></li>
+                    <li><a href="./Cart" class="active">Checkout</a></li>
 
                     <li><a href="about.jsp">About</a></li>
                 </ul>
@@ -56,6 +57,28 @@
             <div id="main">
                 <div class="inner">
                     <h1>Checkout</h1>
+                    <table>
+                        <tr>
+                            <th style="width: 100px;">Image</th>
+                            <th style="width: 100px;">Title</th>
+                            <th style="width: 100px;">Author</th>
+                            <th style="width: 100px;">Price</th>
+                            <th>Quantity</th>
+                            <th style="width: 100px;">Total Price</th>
+                            <th></th>
+                        </tr>
+                        <c:forEach items="${books}" var="book">
+                            <tr>
+                                <th><img src="${book.getImage()}" alt="alt" style="width: 50px;"/></th>
+                                <td>${book.getTitle()}</td>
+                                <td>${book.getAuthor()}</td>
+                                <td>${book.getPrice()}</td>
+                                <td>${book.getQuantity()}</td>
+                                <td>${book.getRealPrice()}</td>
+                                <td><a href="Cart?delete=ok"</td>
+                            </tr>
+                        </c:forEach>
+                    </table>
                 </div>
             </div>
 
@@ -63,30 +86,30 @@
             <footer id="footer">
                 <div class="inner">
                     <section>
-                        <form method="post" action="#">
+                        <form method="post" action="Cart">
                             <div class="fields">
                                 <div class="field">
-                                    <input type="text" name="field-2" id="field-2" placeholder="Name">
+                                    <input type="text" name="Fullname" id="field-2" placeholder="Name" value="${sessionScope.user.getName()}">
                                 </div>
 
                                 <div class="field">
-                                    <input type="text" name="field-3" id="field-3" placeholder="Email">
+                                    <input type="text" name="email" id="field-3" placeholder="Email" value="${sessionScope.user.getEmail()}">
                                 </div>
 
                                 <div class="field">
-                                    <input type="text" name="field-4" id="field-4" placeholder="Phone">
+                                    <input type="text" name="phone" id="field-4" placeholder="Phone" value="${sessionScope.user.getPhone()}">
                                 </div>
 
                                 <div class="field">
-                                    <input type="text" name="field-5" id="field-5" placeholder="Address">
+                                    <input type="text" name="Address" id="field-5" placeholder="Address" value="${sessionScope.user.getAddress()}">
                                 </div>
 
                                 <div class="field half">
 
                                     <select>
                                         <option value="">-- Choose Payment Method--</option>
-                                        <option value="cod"> Cash on Delivery</option>
-                                        <option value="cc"> Credit Card/Debit Card (developing)</option>
+                                        <option value="fast"> Fast Delivery - $1.5</option>
+                                        <option value="free"> Free Delivery</option>
                                     </select>
                                 </div>
                                 <div class="field half text-right">

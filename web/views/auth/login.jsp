@@ -64,7 +64,7 @@ Author     : ACER
                                             </label>
                                         </div>
                                         <div class="w-50 text-md-right">
-                                            <a href="ForgotController">Forgot Password</a>
+                                            <a href="Forgot?origin=${origin}">Forgot Password</a>
                                         </div>
                                     </div>
                                 </form>

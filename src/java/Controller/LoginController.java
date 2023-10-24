@@ -21,7 +21,7 @@ public class LoginController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String referer = (String) request.getParameter("origin");
+        String referer = request.getParameter("origin");
         request.setAttribute("origin", referer);
         forward(request, response, "/views/auth/login.jsp");
     }
@@ -38,11 +38,13 @@ public class LoginController extends HttpServlet {
             HttpSession session = request.getSession();
             session.setAttribute("user", user);
             if (user.isIs_super()) {
-                response.sendRedirect("./views/admin/Admin.jsp");
+                //response.sendRedirect("./views/admin/Admin.jsp");
+                forward(request, response, "/admin/productmanage.jsp");
             } else {
                 response.sendRedirect(request.getParameter("origin"));
             }
         } else {
+            request.setAttribute("origin",request.getParameter("origin"));
             request.setAttribute("error", "Username or password wrong!");
             forward(request, response, "/views/auth/login.jsp");
         }
