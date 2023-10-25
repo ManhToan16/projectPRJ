@@ -7,6 +7,7 @@ package context;
 import Model.Book;
 import java.sql.Connection;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
@@ -28,6 +29,16 @@ public class CartDAO {
         } catch (Exception e) {
             System.out.println("Connect error:" + e.getMessage());
         }
+    }
+    public ResultSet getData(String sql) {
+        rs = null;
+        try {
+            stm = cnn.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
+            rs = stm.executeQuery(sql);
+        } catch (SQLException e) {
+            System.out.println("getData error:" + e.getMessage());
+        }
+        return rs;
     }
 
     public void addToCart(int userid, int bookid, int quantity) {
@@ -76,7 +87,7 @@ public class CartDAO {
         ArrayList<Book> list = new ArrayList<>();
         try{
             stm= cnn.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE,ResultSet.CONCUR_UPDATABLE);
-            String sql="select b.[id], b.[title], b.[author], c.[quantity], b.[price], b.[issale], b.[discount], b.[image] from [Book] b, [Cart] c where c.[userid]="+userid+""
+            String sql="select b.[id], b.[title], b.[author], c.[quantity], b.[price], b.[is_sale], b.[discount], b.[image] from [Book] b, [Cart] c where c.[userid]="+userid+""
                     + "AND b.[id] = c.[bookid]";
             rs = stm.executeQuery(sql);
             while(rs.next()){

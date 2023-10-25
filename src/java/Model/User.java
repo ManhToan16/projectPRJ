@@ -41,7 +41,7 @@ public class User {
         this.password = password;
     }
 
-    public boolean isIs_super() {
+    public boolean is_super() {
         return is_super;
     }
 

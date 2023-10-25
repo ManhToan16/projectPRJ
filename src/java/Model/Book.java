@@ -4,8 +4,6 @@
  */
 package Model;
 
-import java.math.BigDecimal;
-
 public class Book {
     private int id;
     private String title, author;
@@ -29,6 +27,19 @@ public class Book {
         this.image = image;
         this.description = description;
     }
+
+    public Book(int id, String title, String author, int quantity, float price, boolean issale, int discount, String image) {
+        this.id = id;
+        this.title = title;
+        this.author = author;
+        this.quantity = quantity;
+        this.price = price;
+        this.issale = issale;
+        this.discount = discount;
+        this.image = image;
+    }
+
+    
 
     public int getId() {
         return id;
@@ -110,8 +121,8 @@ public class Book {
         this.image = image;
     }
     
-    public BigDecimal getRealPrice(){
-        return new BigDecimal(this.price*(100-this.discount)*100);
+    public Float getRealPrice(){
+        return (this.issale()?(this.price*(100-this.discount)/100) : this.price);
     }
     
 }

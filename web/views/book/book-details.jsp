@@ -43,13 +43,20 @@
             <nav id="menu">
                 <h2>Menu</h2>
                 <ul>
-                    <li><a href="./Home">Home</a></li>
+                    <li><a href="./Home" class="active">Home</a></li>
 
-                    <li><a href="#" class="active">Products</a></li>
-
-                    <li><a href="./Cart">Checkout</a></li>
+                    <li><a href="./Cart">Cart</a></li>
 
                     <li><a href="about.jsp">About</a></li>
+                        <% 
+                            if(session.getAttribute("user")==null){ 
+                        %>
+                    <li><a href="Login?origin=./Home">Login</a></li>
+                        <% } else{ %>
+                    <li><a href="">Welcome ${sessionScope.user.getName()}</a></li>
+                    <li><a href="./Order">Order History</a></li>
+                    <li><a href="Logout">Logout</a></li>
+                        <% }%>
                 </ul>
             </nav>
 
@@ -87,7 +94,7 @@
                                             <div class="row">
                                                 <div class="col-sm-6">
                                                     <div class="form-group">
-                                                        <input type="text" name="quantity" id="name" value="1" pattern="[0-9]+" required>
+                                                        <input type="number" name="quantity" class="bg-transparent form-control" value="1" pattern="[0-9]+" required>
                                                     </div>
                                                 </div>
 

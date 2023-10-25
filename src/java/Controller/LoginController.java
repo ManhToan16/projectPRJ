@@ -17,7 +17,6 @@ import jakarta.servlet.http.HttpSession;
 /* @author ACER */
 public class LoginController extends HttpServlet {
 
-    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -37,7 +36,7 @@ public class LoginController extends HttpServlet {
         if (user != null) {
             HttpSession session = request.getSession();
             session.setAttribute("user", user);
-            if (user.isIs_super()) {
+            if (user.is_super()) {
                 //response.sendRedirect("./views/admin/Admin.jsp");
                 forward(request, response, "/admin/productmanage.jsp");
             } else {

@@ -125,9 +125,8 @@ CREATE TABLE [dbo].[Order](
 	[userid] int NOT NULL,
 	[orderdate] [date],
 	[subtotal] decimal(10,2) ,
-	[shipping] decimal(10,2) ,
-	[total] decimal(10,2),
 	[shipper] [nvarchar](50),
+	[total] decimal(10,2),
 	[status] [nvarchar](50)
  CONSTRAINT [PK_order] PRIMARY KEY CLUSTERED 
 (
@@ -147,7 +146,6 @@ CREATE TABLE [dbo].[OrderItem](
 	price decimal(10,2) ,
 )
 GO
-
 /****** Object:  Table [dbo].[Discount] ******/
 SET ANSI_NULLS ON
 GO
@@ -165,27 +163,29 @@ CONSTRAINT [PK_discount] PRIMARY KEY NONCLUSTERED
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 
-/****** Object:  Table [dbo].[Cart]    Script Date: 7/1/2022 1:29:59 PM ******/
+/****** Object:  Table [dbo].[Invoice] ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
-CREATE TABLE [dbo].[Cart](
-	[id] [int] IDENTITY(1,1) NOT NULL,
-	[userid] [int] NULL,
-	[bookid] [int] NULL,
-	[quantity] [int] NULL,
-PRIMARY KEY CLUSTERED 
+CREATE TABLE [dbo].[Customer](
+	[id] int IDENTITY(1,1) NOT NULL,
+	[orderid] int NOT NULL,
+	[userid] int NOT NULL,
+	[name] [nvarchar](50),
+	[email] [varchar](50) NULL,
+	[phone] [varchar](11) NULL,
+	[address] [nvarchar](200) NULL
+CONSTRAINT [PK_invoice] PRIMARY KEY NONCLUSTERED 
 (
 	[id] ASC
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
-GO
-ALTER TABLE [dbo].[Cart]  WITH CHECK ADD FOREIGN KEY([bookid])
-REFERENCES [dbo].[Book] ([id])
-GO
-ALTER TABLE [dbo].[Cart]  WITH CHECK ADD FOREIGN KEY([userid])
+ALter table [dbo].[Customer] with check add foreign key ([userid])
 REFERENCES [dbo].[User] ([id])
+GO
+ALter table [dbo].[Customer] with check add foreign key ([orderid])
+REFERENCES [dbo].[Order] ([id])
 GO
 ------
 ALTER TABLE [dbo].[User] ADD  DEFAULT (0) FOR [is_super]
@@ -201,7 +201,10 @@ GO
 ALTER TABLE [dbo].[OrderItem]  WITH CHECK ADD FOREIGN KEY(bookid)
 REFERENCES [dbo].Book (id)
 GO
-
+ALTER TABLE [dbo].[Order] ADD  DEFAULT (0) FOR [subtotal]
+GO
+ALTER TABLE [dbo].[Order] ADD  DEFAULT (0) FOR [total]
+GO
 --ALTER TABLE [dbo].[Book]  WITH CHECK ADD FOREIGN KEY(did)
 --REFERENCES [dbo].[Discount] (id)
 GO
@@ -276,11 +279,26 @@ INSERT [dbo].[Book] ( [title], [author], [categoryid], [quantity], [price], [is_
 GO
 INSERT [dbo].[Book] ( [title], [author], [categoryid], [quantity], [price], [is_sale], [discount], [image], [description]) VALUES ( N'Classroom of the Elite Vol. 1', N'Syougo Kinugasa', 4, 200, CAST(13.99 AS Decimal(10, 2)), 1, 10, N'https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1540974678l/41085104.jpg', N'Students of the prestigious Tokyo Metropolitan Advanced Nurturing High School are given remarkable freedom—if they can win, barter, or save enough points to work their way up the ranks! Ayanokoji Kiyotaka has landed at the bottom in the scorned Class D, where he meets Horikita Suzune, who’s determined to rise up the ladder to Class A. Can they beat the system in a school where cutthroat competition is the name of the game?')
 GO
-INSERT [dbo].[Order] ( [userid], [orderdate], [subtotal], [shipping], [total], [shipper], [status]) VALUES ( 1, CAST(N'2022-06-26' AS Date), NULL, NUll, NULL, N'Fast Deliver', N'Processing')
-GO
-INSERT [dbo].[OrderItem] ([orderid], [bookid], [quantity], [price]) VALUES (1, 1, 3, NULL)
-GO
-USE [master]
-GO
-ALTER DATABASE [IIBOOK] SET  READ_WRITE 
-GO
+
+Create trigger CalcuSubtotal on [OrderItem] AFTER INSERT AS
+BEGIN
+	update [Order]
+	set [subtotal] = [subtotal] + (
+		Select i.price*i.quantity  from [inserted] i where i.orderid = [Order].id)
+	FROM [Order]
+	Join inserted on [Order].id = inserted.orderid
+	update [Order]
+	set [total] = [total] +(
+		Select i.price*i.quantity  from [inserted] i where i.orderid = [Order].id)
+	FROM [Order]
+	Join inserted on [Order].id = inserted.orderid
+END
+go
+Create trigger Shipping on [Order] After INSERT AS
+BEGIN
+	update [Order]
+	set [total] = 1.5 
+	where id = (select id from inserted)
+	AND shipper = 'Fast Delivery'
+END
+go

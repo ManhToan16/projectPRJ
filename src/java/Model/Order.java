@@ -11,20 +11,24 @@ public class Order {
     private int userid;
     private String orderdate;
     private float subtotal;
-    private float shipping;
     private float total;
     private String shipper;
     private String status;
 
-    public Order(int id, int userid, String orderdate, float subtotal, float shipping, float total, String shipper, String status) {
+    public Order(int id, int userid, String orderdate, float subtotal, String shipper, float total, String status) {
         this.id = id;
         this.userid = userid;
         this.orderdate = orderdate;
         this.subtotal = subtotal;
-        this.shipping = shipping;
         this.total = total;
         this.shipper = shipper;
         this.status = status;
+    }
+
+    public Order(int userid, String orderdate) {
+        this.userid = userid;
+        this.orderdate = orderdate;
+        this.status = "Wait";
     }
 
     public String getStatus() {
@@ -65,14 +69,6 @@ public class Order {
 
     public void setSubtotal(float subtotal) {
         this.subtotal = subtotal;
-    }
-
-    public float getShipping() {
-        return shipping;
-    }
-
-    public void setShipping(float shipping) {
-        this.shipping = shipping;
     }
 
     public float getTotal() {

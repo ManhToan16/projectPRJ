@@ -48,17 +48,17 @@
                 <ul>
                     <li><a href="./Home" class="active">Home</a></li>
 
-                    <li><a href="products.jsp">Products</a></li>
-
-                    <li><a href="./Cart">Checkout</a></li>
+                    <li><a href="./Cart">Cart</a></li>
 
                     <li><a href="about.jsp">About</a></li>
                         <% 
                             if(session.getAttribute("user")==null){ 
                         %>
-                    <li><a href="Login?origin=${origin}">Login</li>
+                    <li><a href="Login?origin=./Home">Login</a></li>
                         <% } else{ %>
-                    <li><a href="Logout">Logout</li>
+                    <li><a href="">Welcome ${user.getName()}</a></li>
+                    <li><a href="./Order">Order History</a></li>
+                    <li><a href="Logout">Logout</a></li>
                         <% }%>
                 </ul>
             </nav>
@@ -128,7 +128,7 @@
                 <div class="inner">
                     <!-- About Us -->
                     <header id="inner">
-                        <h1>What spices are you looking for in your book?</h1>
+                        <h1>We offer the best spice for your book</h1>
                         <blockquote>
                             <p>
                                 <i
@@ -163,6 +163,7 @@
                                     <c:if test="${!book.issale()}">
                                         <p><strong>$${book.getPrice()}</strong></p>
                                     </c:if>
+                                        <button href="Cart?service=addToCart&bookID=${book.getId()}">Add to Cart</button>
                                 </a>
                             </article>
                         </c:forEach>

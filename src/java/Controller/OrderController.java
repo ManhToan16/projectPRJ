@@ -2,9 +2,11 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
  */
-
 package Controller;
 
+import Model.Order;
+import Model.User;
+import context.OrderDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
@@ -12,30 +14,41 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
+import java.util.ArrayList;
 
 /* @author ACER */
-public class LogoutController extends HttpServlet {
-   
+public class OrderController extends HttpServlet {
+
     protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        HttpSession session = request.getSession();
-        
-        session.removeAttribute("user");
-        
-        String referer = (String) request.getHeader("Referer");
-        
-        response.sendRedirect(referer);
-    } 
+        response.setContentType("text/html;charset=UTF-8");
+        try ( PrintWriter out = response.getWriter()) {
+            String service = request.getParameter("service");
+            if (service == null) {
+                service = "List My Orders";
+            }
+            HttpSession session = request.getSession();
+            switch (service) {
+                default:
+                    User user = (User)session.getAttribute("user");
+                    OrderDAO od = new OrderDAO();
+                    ArrayList<Order> orders = od.getUserOrders(user.getId());
+                    request.setAttribute("orders", orders);
+                    request.getRequestDispatcher("/views/user/orders.jsp").forward(request, response);
+                    break;
+            }
+        }
+    }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
-    throws ServletException, IOException {
+            throws ServletException, IOException {
         processRequest(request, response);
-    } 
+    }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
-    throws ServletException, IOException {
+            throws ServletException, IOException {
         processRequest(request, response);
     }
 

@@ -6,6 +6,8 @@
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page import="Model.Book"%>
+<%@page import="java.util.ArrayList"%>
 <!DOCTYPE html>
 <html>
     <head>
@@ -43,13 +45,20 @@
             <nav id="menu">
                 <h2>Menu</h2>
                 <ul>
-                    <li><a href="./Home" >Home</a></li>
+                    <li><a href="./Home" class="active">Home</a></li>
 
-                    <li><a href="products.jsp">Products</a></li>
-
-                    <li><a href="./Cart" class="active">Checkout</a></li>
+                    <li><a href="./Cart">Cart</a></li>
 
                     <li><a href="about.jsp">About</a></li>
+                        <% 
+                            if(session.getAttribute("user")==null){ 
+                        %>
+                    <li><a href="Login?origin=./Home">Login</a></li>
+                        <% } else{ %>
+                    <li><a href="">Welcome ${user.getName()}</a></li>
+                    <li><a href="./Order">Order History</a></li>
+                    <li><a href="Logout">Logout</a></li>
+                        <% }%>
                 </ul>
             </nav>
 
@@ -60,24 +69,41 @@
                     <table>
                         <tr>
                             <th style="width: 100px;">Image</th>
-                            <th style="width: 100px;">Title</th>
-                            <th style="width: 100px;">Author</th>
-                            <th style="width: 100px;">Price</th>
-                            <th>Quantity</th>
-                            <th style="width: 100px;">Total Price</th>
+                            <th style="width: 400px;">Title</th>
+                            <th style="width: 200px;">Author</th>
+                            <th style="width: 150px;">Price</th>
+                            <th style="width: 100px;">Quantity</th>
+                            <th style="width: 150px;">Total Price</th>
+                            <th></th>
                             <th></th>
                         </tr>
+                        <% 
+                            float totalOrder = 0; 
+                            ArrayList<Book> books = (ArrayList<Book>) request.getAttribute("books");
+                            for(int i=0; i<books.size();i++){
+                                totalOrder += books.get(i).getRealPrice()*books.get(i).getQuantity();
+                            }
+                        %>
+
                         <c:forEach items="${books}" var="book">
-                            <tr>
-                                <th><img src="${book.getImage()}" alt="alt" style="width: 50px;"/></th>
-                                <td>${book.getTitle()}</td>
-                                <td>${book.getAuthor()}</td>
-                                <td>${book.getPrice()}</td>
-                                <td>${book.getQuantity()}</td>
-                                <td>${book.getRealPrice()}</td>
-                                <td><a href="Cart?delete=ok"</td>
-                            </tr>
+                            <form method="post" action="Cart">
+                                <input type="hidden" name="bookID" value="${book.getId()}">
+                                <tr>
+                                    <th><img src="${book.getImage()}" alt="alt" style="width: 75px;"/></th>
+                                    <td>${book.getTitle()}</td>
+                                    <td>${book.getAuthor()}</td>
+                                    <td>$${Math.round(book.getRealPrice()*100)/100}</td>
+                                    <td><input type="number" name="quantity" value="${book.getQuantity()}" class="bg-transparent form-control"></td>
+                                    <td>$${Math.round(book.getRealPrice()*book.getQuantity()*100)/100}</td>
+                                    <td><button type="submit" name="service" value="update"><i class="fa fa-refresh"></i></button></td>
+                                    <td><button type="submit" name="service" value="remove"><i class="fa fa-remove"></i></button></td>
+                                </tr>
+                            </form>
                         </c:forEach>
+                        <tr>
+                            <th colspan="5">Total order</th>
+                            <th colspan="3"><%=Math.round(totalOrder*100)/(float)100%></th>
+                        </tr>
                     </table>
                 </div>
             </div>
@@ -89,32 +115,32 @@
                         <form method="post" action="Cart">
                             <div class="fields">
                                 <div class="field">
-                                    <input type="text" name="Fullname" id="field-2" placeholder="Name" value="${sessionScope.user.getName()}">
+                                    <input type="text" name="fullname" id="field-2" placeholder="Name" value="${sessionScope.user.getName()}" required>
                                 </div>
 
                                 <div class="field">
-                                    <input type="text" name="email" id="field-3" placeholder="Email" value="${sessionScope.user.getEmail()}">
+                                    <input type="text" name="email" id="field-3" placeholder="Email" value="${sessionScope.user.getEmail()}" required>
                                 </div>
 
                                 <div class="field">
-                                    <input type="text" name="phone" id="field-4" placeholder="Phone" value="${sessionScope.user.getPhone()}">
+                                    <input type="text" name="phone" id="field-4" placeholder="Phone" value="${sessionScope.user.getPhone()}" required>
                                 </div>
 
                                 <div class="field">
-                                    <input type="text" name="Address" id="field-5" placeholder="Address" value="${sessionScope.user.getAddress()}">
+                                    <input type="text" name="address" id="field-5" placeholder="Address" value="${sessionScope.user.getAddress()}" required>
                                 </div>
 
                                 <div class="field half">
 
-                                    <select>
-                                        <option value="">-- Choose Payment Method--</option>
+                                    <select name="shipper" required>
+                                        <option value="">-- Choose Delivery Method--</option>
                                         <option value="fast"> Fast Delivery - $1.5</option>
                                         <option value="free"> Free Delivery</option>
                                     </select>
                                 </div>
                                 <div class="field half text-right">
                                     <ul class="actions">
-                                        <li><input type="submit" value="Finish" class="primary"></li>
+                                        <li><input type="submit" name="service" value="Checkout" class="primary"></li>
                                     </ul>
                                 </div>
                             </div>

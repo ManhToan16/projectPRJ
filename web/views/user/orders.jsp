@@ -1,31 +1,30 @@
 <%-- 
-    Document   : about
-    Created on : Jun 17, 2022, 11:03:08 AM
+    Document   : products
+    Created on : Jun 15, 2022, 10:56:23 AM
     Author     : ACER
 --%>
-
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Our Team</title>
+        <title>Order History</title>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css" />
         <link rel="stylesheet" href="assets/css/main.css" />
-        <noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+        <noscript><link rel="stylesheet" href="assets/css/noscript.css"/></noscript>
     </head>
     <body class="is-preload">
         <!-- Wrapper -->
         <div id="wrapper">
-
             <!-- Header -->
             <header id="header">
                 <div class="inner">
-
                     <!-- Logo -->
                     <a href="./Home" class="logo">
-                        <span class="fa fa-book"></span> <span class="title">IIBOOK</span>
+                        <span class="fa fa-book"></span>
+                        <span class="title">IIBOOK</span>
                     </a>
 
                     <!-- Nav -->
@@ -34,7 +33,6 @@
                             <li><a href="#menu">Menu</a></li>
                         </ul>
                     </nav>
-
                 </div>
             </header>
 
@@ -52,7 +50,7 @@
                         %>
                     <li><a href="Login?origin=./Home">Login</a></li>
                         <% } else{ %>
-                    <li><a href="">Welcome ${sessionScope.user.getName()}</a></li>
+                    <li><a href="">Welcome ${user.getName()}</a></li>
                     <li><a href="./Order">Order History</a></li>
                     <li><a href="Logout">Logout</a></li>
                         <% }%>
@@ -62,22 +60,41 @@
             <!-- Main -->
             <div id="main">
                 <div class="inner">
-                    <h1>About Us</h1>
+                    <h1>List My Orders</h1>
 
                     <div class="image main">
-                        <img src="images/banner-image-1-1920x500.jpg" class="img-fluid" alt="" />
+                        <img
+                            src="images/banner-image-6-1920x500.jpg"
+                            class="img-fluid"
+                            alt=""
+                            />
                     </div>
-
-                    <p>"I AM THE LINK OF MY SERVER"<br>
-                        "IMVU IS MY BODY, AND <span style="text-decoration: line-through">RIGHTING</span> WRITING IS MY BLOOD"<br>
-                        "I HAVE CREATED OVER A THOUSAND ADS"<br>
-                        "UNKNOWN TO WIN, NOR KNOWN TO LOSE"<br>
-                        "HAVE WITHSTOOD FEMALE NARUTO TO CREATE MANY QUIZNO'S SUBS"<br>
-                        "YET THOSE DOUBLE-CLICKS WILL NEVER HOLD ANYTHING"<br>
-                        "SO, AS I PAY BILLS"<br>
-                        <strong>"UNLIMITED AD WORKS"</strong><br>
-                        "AS YOU CAN SEE, WHAT STANDS BEFORE YOU ARE UNLIMITED ADS, THE PINNACLE OF GETTING WEBSITES MONEY"<br>
-                        "WELL WHAT ARE YOU WAITING FOR?"</p>
+                    
+                    <table>
+                        <tr>
+                            <th>No.</th>
+                            <th>Full Name</th>
+                            <th>Email</th>
+                            <th>Total</th>
+                            <th>Status</th>
+                            <th>Expected Delivery Time</th>
+                            <th>Created Time</th>
+                            <th>Details</th>
+                        </tr>
+                        <% int No = 1 ;%>
+                        <c:forEach items="${orders}" var="order">
+                            <tr>
+                                <td><%=No++%></td>
+                                <td>${user.getName()}</td>
+                                <td>${user.getEmail()}</td>
+                                <td>${order.getTotal()}</td>
+                                <td>${order.getStatus()}</td>
+                                <td></td>
+                                <td>${order.getOrderdate()}</td>
+                                <td><a class="btn btn-outline-dark"><i class="fa fa-caret-right"></i></a></td>
+                            </tr>
+                        </c:forEach>
+                    </table>
                 </div>
             </div>
 
@@ -87,16 +104,23 @@
                     <section>
                         <h2>Contact Info</h2>
                         <ul class="alt">
-                            <li><span class="fa fa-github"></span> <a href="https://github.com/nekon0/IIBOOK">Our Project</a></li>
-                            <li><span class="fa fa-map-pin"></span> <a href="https://goo.gl/maps/ojwCjTqRteiA4B9U7"> DE336, FBT University</a></li>
+                            <li>
+                                <span class="fa fa-github"></span>
+                                <a href="https://github.com/nekon0/IIBOOK">Our Project</a>
+                            </li>
+                            <li>
+                                <span class="fa fa-map-pin"></span>
+                                <a href="https://goo.gl/maps/ojwCjTqRteiA4B9U7">
+                                    DE336, FBT University</a
+                                >
+                            </li>
                         </ul>
                     </section>
                     <ul class="copyright">
-                        <li> HLV </li>
+                        <li>HLV</li>
                     </ul>
                 </div>
             </footer>
-
         </div>
 
         <!-- Scripts -->
@@ -107,3 +131,4 @@
         <script src="assets/js/main.js"></script>
     </body>
 </html>
+
