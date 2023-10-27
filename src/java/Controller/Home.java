@@ -21,11 +21,8 @@ public class Home extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         BookDAO ud = new BookDAO();
-        ArrayList<Book> books = ud.getBooks();
-        CategoryDAO cd = new CategoryDAO();
-        ArrayList<Category> types = cd.getCategories();
+        ArrayList<Book> books = ud.getFeaturedBooks();
         request.setAttribute("books", books);
-        request.setAttribute("types", types);
         request.getRequestDispatcher("/index.jsp").forward(request, response);
     }
 

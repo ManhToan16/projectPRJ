@@ -9,19 +9,19 @@
         <meta name="description" content="Developed By M Abdur Rokib Promy">
         <meta name="keywords" content="Admin, Bootstrap 3, Template, Theme, Responsive">
         <!-- bootstrap 3.0.2 -->
-        <link href="admin/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+        <link href="./admin/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
         <!-- font Awesome -->
-        <link href="admin/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
-        <link href="admin/css/ionicons.min.css" rel="stylesheet" type="text/css" />
+        <link href="./admin/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+        <link href="./admin/css/ionicons.min.css" rel="stylesheet" type="text/css" />
         <!-- Morris chart -->
-        <link href="admin/css/morris/morris.css" rel="stylesheet" type="text/css" />
-        <link href="admin/css/jvectormap/jquery-jvectormap-1.2.2.css" rel="stylesheet" type="text/css" />
-        <link href="admin/css/datepicker/datepicker3.css" rel="stylesheet" type="text/css" />
-        <link href="admin/css/daterangepicker/daterangepicker-bs3.css" rel="stylesheet" type="text/css" />
-        <link href="admin/css/iCheck/all.css" rel="stylesheet" type="text/css" />
+        <link href="./admin/css/morris/morris.css" rel="stylesheet" type="text/css" />
+        <link href="./admin/css/jvectormap/jquery-jvectormap-1.2.2.css" rel="stylesheet" type="text/css" />
+        <link href="./admin/css/datepicker/datepicker3.css" rel="stylesheet" type="text/css" />
+        <link href="./admin/css/daterangepicker/daterangepicker-bs3.css" rel="stylesheet" type="text/css" />
+        <link href="./admin/css/iCheck/all.css" rel="stylesheet" type="text/css" />
         <link href='http://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
         <!-- Theme style -->
-        <link href="admin/css/style.css" rel="stylesheet" type="text/css" />
+        <link href="./admin/css/style.css" rel="stylesheet" type="text/css" />
 
         <style type="text/css">
             .left-aside{
@@ -37,8 +37,7 @@
         <c:set var = "index" scope = "page" value = "${param['index']}"/>
     </c:if>
     <!-- header logo: style can be found in header.less -->
-    <div class="left-side sidebar-offcanvas"  style="height: 1200px;position: fixed; width: 220px; background-color: #39435c;left: 0; top:0;">
-    </div>
+
     <jsp:include page="./header.jsp"/>
     <div class="wrapper row-offcanvas row-offcanvas-left" style="height: 100%;">
         <!-- Left side column. contains the logo and sidebar -->

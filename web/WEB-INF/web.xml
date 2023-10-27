@@ -40,6 +40,26 @@
         <servlet-name>OrderController</servlet-name>
         <servlet-class>Controller.OrderController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>CategoryController</servlet-name>
+        <servlet-class>Controller.CategoryManager</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>BookManager</servlet-name>
+        <servlet-class>Controller.BookManager</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>Dashboard</servlet-name>
+        <servlet-class>Controller.Dashboard</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>OrderManager</servlet-name>
+        <servlet-class>Controller.OrderManager</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>UserManager</servlet-name>
+        <servlet-class>Controller.UserManager</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>LoginController</servlet-name>
         <url-pattern>/Login</url-pattern>
@@ -71,6 +91,26 @@
     <servlet-mapping>
         <servlet-name>OrderController</servlet-name>
         <url-pattern>/Order</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CategoryController</servlet-name>
+        <url-pattern>/Category</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>BookManager</servlet-name>
+        <url-pattern>/BookManager</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Dashboard</servlet-name>
+        <url-pattern>/Dashboard</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>OrderManager</servlet-name>
+        <url-pattern>/OrderManager</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>UserManager</servlet-name>
+        <url-pattern>/UserManager</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

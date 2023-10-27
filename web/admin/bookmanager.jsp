@@ -4,7 +4,7 @@
 <html>
     <head>
         <meta charset="UTF-8">
-        <title>Director | Quan ly san pham</title>
+        <title>Book Manager</title>
         <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
         <meta name="description" content="Developed By M Abdur Rokib Promy">
         <meta name="keywords" content="Admin, Bootstrap 3, Template, Theme, Responsive">
@@ -23,9 +23,13 @@
         <!-- Theme style -->
         <link href="./admin/css/style.css" rel="stylesheet" type="text/css" />
 
-        <style type="text/css">
+        <style>
             .left-aside{
                 height: 1550px;
+            }
+            img{
+                border: 1px solid black;
+                border-radius: 2px;
             }
         </style>
     </head>
@@ -37,8 +41,6 @@
             <c:set var = "index" scope = "page" value = "${param['index']}"/>
         </c:if>
         <!-- header logo: style can be found in header.less -->
-        <div class="left-side sidebar-offcanvas"  style="height: 1200px;position: fixed; width: 220px; background-color: #39435c;left: 0; top:0;">
-        </div>
         <jsp:include page="./header.jsp"/>
         <div class="wrapper row-offcanvas row-offcanvas-left" style="height: 100%;">
             <!-- Left side column. contains the logo and sidebar -->
@@ -53,7 +55,7 @@
                         <div class="col-xs-12">
                             <div class="panel">
                                 <header class="panel-heading">
-                                    Quản Lý Sản Phẩm
+                                    Book Manager
                                 </header>
                                 <!-- <div class="box-header"> -->
                                 <!-- <h3 class="box-title">Responsive Hover Table</h3> -->
@@ -64,97 +66,85 @@
                                         <div class="input-group" style="margin-bottom: 10px;width: 100%; ">
                                             <form class="search-slider"
                                                   style="width: 100%; display: flex; justify-content: space-between; position: relative;"
-                                                  method="get" action="productmanagement">
+                                                  method="get" action="BookManager">
                                                 <div class="left-filter">
-                                                    <a class="btn btn-primary" data-toggle="modal" data-target="#addpro">Thêm Sản Phẩm</a>
+                                                    <a class="btn btn-primary" href="BookManager?service=add">Add Book</a>
                                                 </div>
 
                                                 <div class="right-search">
                                                     <label class="form-control"
-                                                           style="border:none;display: inline;">Brands</label>
-                                                    <select class="form-control" name="brandId" style="display: inline; width: 100px;">
+                                                           style="border:none;display: inline;">Category</label>
+                                                    <select class="form-control" name="cid" style="display: inline; width: 100px;">
                                                         <option value="">All</option>
-                                                        <c:forEach var="brand" items="${brand}">
-                                                            <option value="${brand.getSetting_id()}" ${brand.getSetting_id()==param['brandId']?"selected":""}>${brand.getValue()}</option>
+                                                        <c:forEach var="cate" items="${cates}">
+                                                            <option value="${cate.getId()}" ${cate.getId()==param['cid']?"selected":""}>${cate.getName()}</option>
                                                         </c:forEach>
-                                                    </select>
-                                                    <label class="form-control"
-                                                           style="border:none;display: inline;">Status</label>
-                                                    <select class="form-control" name="status" style="display: inline; width: 100px;">
-                                                        <option value="">All</option>
-                                                        <option value="1" ${param['status']==1?'selected':''}>Active</option>
-                                                        <option value="0" ${param['status']==0?'selected':''}>Inactive</option>
                                                     </select>
                                                     <input type="text" name="search" class="form-control" value="${param['search']} "
                                                            style="width: 250px;" placeholder="Search" />
                                                     <select class="form-control input-sm" name="type-search"
                                                             style="display: inline; width: 90px; border:none; position:absolute; right:50px;top:2px;">
                                                         <option value="0" ${param['type-search']==0?'selected':''}>Title</option>
-                                                        <option value="1" ${param['type-search']==1?'selected':''}>Brief</option>
+                                                        <option value="1" ${param['type-search']==1?'selected':''}>Author</option>
                                                     </select>
-                                                    <button class="btn btn-default">Go</button>
+                                                    <button class="btn btn-default" name="service" value="search">Go</button>
                                                 </div>
                                             </form>
                                         </div>
                                         <table class="table table-hover " id="tablepro">
                                             <thead>
                                                 <tr style="cursor: pointer; font-size: 15px;  text-align: center;">
-                                                    <th style="width: 55px;">ID<i class="fa fa-caret-down" aria-hidden="true"></i></th>
-                                                    <th>Name<i class="fa fa-caret-down" aria-hidden="true"></i></th>
-                                                    <th style="width: 240px;">Image</th>
-                                                    <th style="width: 340px;">Brief information<i class="fa fa-caret-down" aria-hidden="true"></i></th>
-                                                    <th>Category<i class="fa fa-caret-down" aria-hidden="true"></i></th>
-                                                    <th>Brand<i class="fa fa-caret-down" aria-hidden="true"></i></th>
-                                                    <th>Stock<i class="fa fa-caret-down" aria-hidden="true"></i></th>
-                                                    <th>Price<i class="fa fa-caret-down" aria-hidden="true"></i></th>
-                                                    <th>Sale Price<i class="fa fa-caret-down" aria-hidden="true"></i></th>
-                                                    <th>Status<i class="fa fa-caret-down" aria-hidden="true"></i></th>
+                                                    <th>ID</th>
+                                                    <th>Title</th>
+                                                    <th>Author</th>
+                                                    <th style="width: 150px;">Image</th>
+                                                    <th>Category</th>
+                                                    <th>Stock</th>
+                                                    <th>Price</th>
+                                                    <th>Sale</th>
+                                                    <th>Discount</th>
                                                     <th  width="20px">Edit</th>
                                                     <th  width="20px">Del</th>
-                                                    <th width="3%">Switch</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
 
-                                                <c:forEach var="s" items="${prolist}">
+                                                <c:forEach var="s" items="${books}">
                                                     <tr>
-                                                        <td style="width: 55px;">${s.getId()}</td>
+                                                        <td >${s.getId()}</td>
                                                         <td data-toggle="modal" data-target="#Show${s.getId()}" style="cursor: pointer;">${s.getTitle()}</td>
-                                                        <td style="width: 240px;"><image  src="${s.getImg()}" width="150px"></td>
-                                                        <td style="width: 340px;">${s.getBrief()}...</td>
-                                                        <td>${s.getCategory()}</td>
-                                                        <td>${s.getBrand()}</td>
-                                                        <td>${s.getStock()}</td>
-                                                        <td>${s.getPrice()}$</td>
-                                                        <td>${s.getSalePrice()}$</td>
-                                                        <c:if test="${s.isActive()}">
-                                                            <td><span class="label label-success" style="font-size: 15px">Acive</span></td>
-                                                        </c:if>
-                                                        <td width="20px"><a class="btn btn-primary"  data-toggle="modal" data-target="#EditModalUP${s.getId()}"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a></td>
-                                                        <td Width="20px"><a class="btn btn-danger" data-toggle="modal" data-target="#Delete${s.getId()}"><i class="fa fa-trash-o" aria-hidden="true"></i></a></td>
-                                                                <c:if test="${s.isActive()}">
-                                                            <td><a class="btn btn-warning" href="productmanagement?action=switch&pid=${s.getId()}&sstatus=0&index=${index}">Inctive</a></td>
-                                                        </c:if>
-                                                      
+                                                        <td>${s.getAuthor()}</td>
+                                                        <td style="width: 150px;"><img  src="${s.getImage()}" width="100px"></td>
+                                                        <td>${s.getCategoryid()}</td>
+                                                        <td>${s.getQuantity()}</td>
+                                                        <td>$${s.getPrice()}</td>
+                                                        <td><input class="checkbox-inline" type="checkbox" ${s.issale()?"checked":""} disabled></td>
+                                                        <td>${s.getDiscount()}%</td>
+                                                        <td><a class="btn btn-primary" href="BookManager?service=edit&bid=${s.getId()}"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a></td>
+                                                        <td><a class="btn btn-danger" href="BookManager?service=del&bid=${s.getId()}"><i class="fa fa-trash-o" aria-hidden="true"></i></a></td>
                                                     </tr>
                                                     <!-- Show detail modal -->
-                                            </c:forEach>
+                                                </c:forEach>
                                             </tbody>
                                         </table>
                                         <div class="pagination-arena " style="margin-left: 40%">
                                             <ul class="pagination">
-                                                <li class="page-item"><a href="" class="page-link"><i class="fa fa-angle-left" aria-hidden="true"></i></a></li>
-                                                <li class="page-item">
-                                                    <a href="" class="page-link " style="${index-2<1?"display:none;":""}">0</a></li>
-                                                <li class="page-item">
-                                                    <a href="" class="page-link " style="${index-1<1?"display:none;":""}">1</a></li>
-                                                <li class="page-item active">
-                                                    <a href="" class="page-link">2</a></li>
-                                                <li class="page-item">
-                                                    <a href="" class="page-link " style="${index+1>numberPage?"display:none;":""}" >3</a></li>
-                                                <li class="page-item">
-                                                    <a href="" class="page-link " style="${index+2>numberPage?"display:none;":""}">4</a></li>
-                                                <li><a href="" class="page-link"><i class="fa fa-angle-right" aria-hidden="true"></i></a></li>
+                                                <li class="page-item" >
+                                                    <a href="BookManager?xpage=${xpage-1}" class="page-link" style="${xpage<3?"display:none":""}">
+                                                        <i class="fa fa-angle-left" aria-hidden="true" ></i>
+                                                    </a>
+                                                </li>
+                                                <c:forEach begin="${1}" end="${numPage}" var="item">
+                                                    <li class="page-item ${item==xpage?"active":""}">
+                                                        <a href="BookManager?xpage=${item}" 
+                                                           class="page-link " style="${(xpage-1>item || xpage+1<item ) ?"display:none;":""}"
+                                                           >${item}</a></li>
+                                                    </c:forEach>
+                                                <li >
+                                                    <a href="BookManager?xpage=${xpage+1}" class="page-link" style="${xpage+2>numPage?"display:none":""}">
+                                                        <i class="fa fa-angle-right" aria-hidden="true"  ></i>
+                                                    </a>
+                                                </li>
                                             </ul>
                                         </div> 
                                     </div><!-- /.box-body -->
@@ -166,8 +156,8 @@
                     Copyright &copy Director, 2014
                 </div>
             </aside><!-- /.right-side -->
-            
-            
+
+
         </div><!-- ./wrapper -->
 
 

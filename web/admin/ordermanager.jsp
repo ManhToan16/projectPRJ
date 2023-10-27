@@ -1,5 +1,5 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
     <head>
@@ -37,8 +37,6 @@
         <c:set var = "index" scope = "page" value = "${param['index']}"/>
     </c:if>
     <!-- header logo: style can be found in header.less -->
-    <div class="left-side sidebar-offcanvas"  style="height: 1200px;position: fixed; width: 220px; background-color: #39435c;left: 0; top:0;">
-    </div>
     <jsp:include page="./header.jsp"/>
     <div class="wrapper row-offcanvas row-offcanvas-left" style="height: 100%;">
         <!-- Left side column. contains the logo and sidebar -->

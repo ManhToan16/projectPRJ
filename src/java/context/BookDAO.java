@@ -109,5 +109,52 @@ public class BookDAO {
         }
         return list;
     }
+
+    public int getNumberBook() {
+        try{
+            stm = cnn.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
+            String sql = "select count([id]) from [Book]";
+            rs = stm.executeQuery(sql);
+            if(rs.next()){
+                return rs.getInt(1);
+            }
+        }catch(Exception e){
+            System.out.println("getNumberBook Error");
+        }
+        return -1;
+    }
+
+    public ArrayList<Book> getFeaturedBooks() {
+        ArrayList<Book> list = new ArrayList<>();
+        try{
+            stm= cnn.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE,ResultSet.CONCUR_UPDATABLE);
+            String sql="select top 3 * from [Book] where [is_sale] = 1";
+            rs = stm.executeQuery(sql);
+            while(rs.next()){
+                int id = rs.getInt(1);
+                String title = rs.getString(2);
+                String author = rs.getString(3);
+                int type =rs.getInt(4);
+                int quantity = rs.getInt(5);
+                float price = rs.getFloat(6);
+                boolean issale = rs.getBoolean(7);
+                int discount = rs.getInt(8);
+                String image = rs.getString(9);
+                String description= rs.getString(10);
+                list.add(new Book(id, title, author, type, quantity, price, issale, discount, image, description));
+            }
+        }catch(Exception e){
+            System.out.println("getlist Error:"+e.getMessage());
+        }
+        return list;
+    }
     
+    public ArrayList<Book> getByPage(ArrayList<Book> list, int start, int end) {
+        ArrayList<Book> listpage = new ArrayList<>();
+        
+        for(int i=start; i<end; i++){
+            listpage.add(list.get(i));
+            }
+        return listpage;
+    }
 }

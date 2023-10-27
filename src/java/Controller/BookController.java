@@ -5,9 +5,11 @@
 package Controller;
 
 import Model.Book;
+import Model.Category;
 import Model.User;
 import context.BookDAO;
 import context.CartDAO;
+import context.CategoryDAO;
 import jakarta.servlet.RequestDispatcher;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -31,11 +33,20 @@ public class BookController extends HttpServlet {
             throws ServletException, IOException {
         int bookid = Integer.parseInt(request.getParameter("id"));
         BookDAO bd = new BookDAO();
-        Book book = bd.getBookById(bookid);
-        ArrayList<Book> likes = bd.getSimilarBooks(bookid, book.getCategoryid());
-        request.setAttribute("book", book);
-        request.setAttribute("likes", likes);
-        request.getRequestDispatcher("/views/book/book-details.jsp").forward(request, response);
+        if (bookid == 0) {
+            ArrayList<Book> books = bd.getBooks();
+            CategoryDAO cd = new CategoryDAO();
+            ArrayList<Category> types = cd.getCategories();
+            request.setAttribute("books", books);
+            request.setAttribute("types", types);
+            request.getRequestDispatcher("/views/book/bookshelf.jsp").forward(request, response);
+        } else {
+            Book book = bd.getBookById(bookid);
+            ArrayList<Book> likes = bd.getSimilarBooks(bookid, book.getCategoryid());
+            request.setAttribute("book", book);
+            request.setAttribute("likes", likes);
+            request.getRequestDispatcher("/views/book/book-details.jsp").forward(request, response);
+        }
     }
 
     @Override

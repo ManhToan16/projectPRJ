@@ -107,4 +107,32 @@ public class OrderDAO {
         }
         return n;
     }
+
+    public int getNumberOrder() {
+        try{
+            stm = cnn.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
+            String sql = "select count([id]) from [Order]";
+            rs = stm.executeQuery(sql);
+            if(rs.next()){
+                return rs.getInt(1);
+            }
+        }catch(Exception e){
+            System.out.println("getNumberOrder Error");
+        }
+        return -1;
+    }
+
+    public float getEarning() {
+        try{
+            stm = cnn.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
+            String sql = "select sum(total) from [Order]";
+            rs = stm.executeQuery(sql);
+            if(rs.next()){
+                return rs.getFloat(1);
+            }
+        }catch(Exception e){
+            System.out.println("getNumberOrder Error");
+        }
+        return -1;
+    }
 }

@@ -23,44 +23,7 @@
         <div id="wrapper">
 
             <!-- Header -->
-            <header id="header">
-                <div class="inner">
-
-                    <!-- Logo -->
-                    <a href="./Home" class="logo">
-                        <span class="fa fa-book"></span> <span class="title">IIBOOK</span>
-                    </a>
-
-                    <!-- Nav -->
-                    <nav>
-                        <ul>
-                            <li><a href="#menu">Menu</a></li>
-                        </ul>
-                    </nav>
-
-                </div>
-            </header>
-
-            <!-- Menu -->
-            <nav id="menu">
-                <h2>Menu</h2>
-                <ul>
-                    <li><a href="./Home" class="active">Home</a></li>
-
-                    <li><a href="./Cart">Cart</a></li>
-
-                    <li><a href="about.jsp">About</a></li>
-                        <% 
-                            if(session.getAttribute("user")==null){ 
-                        %>
-                    <li><a href="Login?origin=./Home">Login</a></li>
-                        <% } else{ %>
-                    <li><a href="">Welcome ${user.getName()}</a></li>
-                    <li><a href="./Order">Order History</a></li>
-                    <li><a href="Logout">Logout</a></li>
-                        <% }%>
-                </ul>
-            </nav>
+            <jsp:include page="../header.jsp"/>
 
             <!-- Main -->
             <div id="main">
@@ -115,24 +78,24 @@
                         <form method="post" action="Cart">
                             <div class="fields">
                                 <div class="field">
-                                    <input type="text" name="fullname" id="field-2" placeholder="Name" value="${sessionScope.user.getName()}" required>
+                                    <input type="text" name="fullname" id="field-2" placeholder="Name" value="${sessionScope.user.getName()}" ${user==null?"":"required"}>
                                 </div>
 
                                 <div class="field">
-                                    <input type="text" name="email" id="field-3" placeholder="Email" value="${sessionScope.user.getEmail()}" required>
+                                    <input type="text" name="email" id="field-3" placeholder="Email" value="${sessionScope.user.getEmail()}" ${user==null?"":"required"}>
                                 </div>
 
                                 <div class="field">
-                                    <input type="text" name="phone" id="field-4" placeholder="Phone" value="${sessionScope.user.getPhone()}" required>
+                                    <input type="text" name="phone" id="field-4" placeholder="Phone" value="${sessionScope.user.getPhone()}" ${user==null?"":"required"}>
                                 </div>
 
                                 <div class="field">
-                                    <input type="text" name="address" id="field-5" placeholder="Address" value="${sessionScope.user.getAddress()}" required>
+                                    <input type="text" name="address" id="field-5" placeholder="Address" value="${sessionScope.user.getAddress()}" ${user==null?"":"required"}>
                                 </div>
 
                                 <div class="field half">
 
-                                    <select name="shipper" required>
+                                    <select name="shipper" ${user==null?"":"required"}>
                                         <option value="">-- Choose Delivery Method--</option>
                                         <option value="fast"> Fast Delivery - $1.5</option>
                                         <option value="free"> Free Delivery</option>

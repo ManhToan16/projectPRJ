@@ -49,12 +49,12 @@
                                         <label class="form-control-placeholder" for="username">Username</label>
                                     </div>
                                     <div class="form-group">
-                                        <input id="password-field" name="password" type="password" class="form-control" required>
+                                        <input id="password-field" id="password" name="password" type="password" class="form-control" required>
                                         <label class="form-control-placeholder" for="password">Password</label>
                                         <span toggle="#password-field" class="fa fa-fw fa-eye field-icon toggle-password"></span>
                                     </div>
                                     <div class="form-group">
-                                        <input id="password-field" name="re_password" type="password" class="form-control" required>
+                                        <input id="password-field" id="confirm_password" type="password" class="form-control" required>
                                         <label class="form-control-placeholder" for="re_password">Confirm Password</label>
                                     </div>
                                     <div class="form-group">
@@ -80,8 +80,8 @@
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                            <label for="birthday" class="text-left">Birthday</label>
-                                            <input type="date" name="birthday" class="text-right" required>
+                                        <label for="birthday" class="text-left">Birthday</label>
+                                        <input type="date" name="birthday" class="text-right" required>
                                     </div>
                                     <% if (request.getAttribute("error") != null) {%>
                                     <div class="w-100">
@@ -104,7 +104,16 @@
         <script src="js/popper.js"></script>
         <script src="assets/bootstrap/js/bootstrap.min.js"></script>
         <script src="assets/js/main.js"></script>
-
+        <script>
+            $('#password, #confirm_password').on('keyup', function () {
+                if ($('#password').val() == $('#confirm_password').val()) {
+                    $('#confirm_password').setCustomValidity("Passwords Don't Match");
+                    ;
+                } else
+                    $('#confirm_password').setCustomValidity('');
+                ;
+            });
+        </script>
     </body>
 </html>
 

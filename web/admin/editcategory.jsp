@@ -4,7 +4,7 @@
 <html>
     <head>
         <meta charset="UTF-8">
-        <title>Category Manager</title>
+        <title>Edit Category</title>
         <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
         <meta name="description" content="Developed By M Abdur Rokib Promy">
         <meta name="keywords" content="Admin, Bootstrap 3, Template, Theme, Responsive">
@@ -25,13 +25,12 @@
 
         <style type="text/css">
             .left-aside{
-                height: 100vh;
+                height: 1550px;
             }
         </style>
     </head>
     <body class="skin-black">
         <!-- header logo: style can be found in header.less -->
-
         <jsp:include page="./header.jsp"/>
         <div class="wrapper row-offcanvas row-offcanvas-left" style="height: 100%;">
             <!-- Left side column. contains the logo and sidebar -->
@@ -46,52 +45,39 @@
                         <div class="col-xs-12">
                             <div class="panel">
                                 <header class="panel-heading">
-                                    Category Manager
+                                    Edit Category
                                 </header>
-                                <!-- <div class="box-header"> -->
-                                <!-- <h3 class="box-title">Responsive Hover Table</h3> -->
-
-                                <!-- </div> -->
                                 <div class="panel-body table-responsive">
                                     <div class="sliderList">
-                                        <div class="input-group" style="margin-bottom: 10px;width: 100%; ">
-                                                <div class="left-filter">
-                                                    <a class="btn btn-primary" href="Category?service=add">Add Category</a>
+                                        <form action="Category" method="POST">
+                                            <div class="form-group col-md-2">
+                                                <label for="exampleSelect1" class="control-label">Category Name</label>
+                                            </div>
+                                            <div class="form-group col-md-6">
+                                                <input class="form-control" type="text" name="name" required value="${name}">
+                                                <input type="hidden" name="cid" value="${cid}">
+                                            </div>
+                                            <div class="input-group col-md-3">
+                                                <div class="left-filter"> 
+                                                    <input class="btn btn-outline-danger" name="in" type="submit" value="Edit">
                                                 </div>
-                                        </div>
-                                        <table class="table table-hover " id="tablepro">
-                                            <thead>
-                                                <tr style="cursor: pointer; font-size: 15px;  text-align: center;">
-                                                    <th >ID</th>
-                                                    <th>Name</th>
-                                                    <th  >Edit</th>
-                                                    <th >Del</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <% int i=1; %>
-                                                <c:forEach var="s" items="${cates}">
-                                                    <tr>
-                                                        <td style="width: 55px;"><%=i++%></td>
-                                                        <td>${s.getName()}</td>
-                                                        <td><a class="btn btn-primary" href="Category?service=edit&cid=${s.getId()}"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a></td>
-                                                        <td><a class="btn btn-danger" href="Category?service=del&cid=${s.getId()}"><i class="fa fa-trash-o" aria-hidden="true"></i></a></td>
-                                                    </tr>
-                                                    <!-- Show detail modal -->
-                                            </c:forEach>
-                                            </tbody>
-                                        </table>
-                                    </div><!-- /.box-body -->
-                                </div><!-- /.box -->
+                                                <c:if test="${error !=null}">
+                                                    ${error}
+                                                </c:if>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
                             </div>
                         </div>
+                    </div>
                 </section><!-- /.content -->
                 <div class="footer-main">
                     Copyright &copy Director, 2014
                 </div>
             </aside><!-- /.right-side -->
-            
-            
+
+
         </div><!-- ./wrapper -->
 
 

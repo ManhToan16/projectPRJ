@@ -6,7 +6,7 @@
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%@page import="Model.Book"%>
+<%@page import="Model.User"%>
 <%@page import="context.BookDAO"%>
 <%@page import="java.util.ArrayList"%>
 <!DOCTYPE html>
@@ -24,45 +24,7 @@
         <!-- Wrapper -->
         <div id="wrapper">
             <!-- Header -->
-            <header id="header">
-                <div class="inner">
-                    <!-- Logo -->
-                    <a href="./Home" class="logo">
-                        <span class="fa fa-book"></span>
-                        <span class="title">IIBOOK</span>
-                    </a>
-
-
-                    <!-- Nav -->
-                    <nav>
-                        <ul>
-                            <li><a href="#menu">Menu</a></li>
-                        </ul>
-                    </nav>
-                </div>
-            </header>
-
-            <!-- Menu -->
-            <nav id="menu">
-                <h2>Menu</h2>
-                <ul>
-                    <li><a href="./Home" class="active">Home</a></li>
-
-                    <li><a href="./Cart">Cart</a></li>
-
-                    <li><a href="about.jsp">About</a></li>
-                        <% 
-                            if(session.getAttribute("user")==null){ 
-                        %>
-                    <li><a href="Login?origin=./Home">Login</a></li>
-                        <% } else{ %>
-                    <li><a href="">Welcome ${user.getName()}</a></li>
-                    <li><a href="./Order">Order History</a></li>
-                    <li><a href="Logout">Logout</a></li>
-                        <% }%>
-                </ul>
-            </nav>
-
+            <jsp:include page="views/header.jsp"/>
             <!-- Main -->
             <div id="main">
                 <div
@@ -170,7 +132,7 @@
                     </section>
 
                     <p class="text-center">
-                        <a href="products.jsp"
+                        <a href="./Book?id=0"
                            >More Books &nbsp;<i class="fa fa-long-arrow-right"></i
                             ></a>
                     </p>
@@ -193,7 +155,7 @@
                         </div>
 
                         <div class="col-sm-4 text-center">
-                            <img src="images/blog-2-720x480.jpg" class="img-fluid" alt="" />
+                            <img src="images/blog-4-720x480.jpg" class="img-fluid" alt="" />
 
                             <h2 class="m-n">
                                 <a href="#"
@@ -205,11 +167,11 @@
                         </div>
 
                         <div class="col-sm-4 text-center">
-                            <img src="images/blog-3-720x480.jpg" class="img-fluid" alt="" />
+                            <img src="images/blog-6-720x480.jpg" class="img-fluid" alt="" />
 
                             <h2 class="m-n">
                                 <a href="#"
-                                   >\Novel REcommended/: Classroom of the Elite</a
+                                   >\Novel Recommended/: Classroom of the Elite</a
                                 >
                             </h2>
 

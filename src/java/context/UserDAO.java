@@ -145,4 +145,18 @@ public class UserDAO {
             System.out.println("changePass Error:" + e.getMessage());
         }
     }
+
+    public Object getNumberUser() {
+        try{
+            stm = cnn.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
+            String sql = "select count([id]) from [User] where [is_super] = 'False'";
+            rs = stm.executeQuery(sql);
+            if(rs.next()){
+                return rs.getInt(1);
+            }
+        }catch(Exception e){
+            System.out.println("getNumberUser Error");
+        }
+        return -1;
+    }
 }

@@ -9,7 +9,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Order History</title>
+        <title>Bookshelf</title>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css" />
         <link rel="stylesheet" href="assets/css/main.css" />
@@ -24,7 +24,7 @@
             <!-- Main -->
             <div id="main">
                 <div class="inner">
-                    <h1>List My Orders</h1>
+                    <h1>Bookshelf</h1>
 
                     <div class="image main">
                         <img
@@ -33,32 +33,31 @@
                             alt=""
                             />
                     </div>
-                    
-                    <table>
-                        <tr>
-                            <th>No.</th>
-                            <th>Full Name</th>
-                            <th>Email</th>
-                            <th>Total</th>
-                            <th>Status</th>
-                            <th>Expected Delivery Time</th>
-                            <th>Created Time</th>
-                            <th>Details</th>
-                        </tr>
-                        <% int No = 1 ;%>
-                        <c:forEach items="${orders}" var="order">
-                            <tr>
-                                <td><%=No++%></td>
-                                <td>${user.getName()}</td>
-                                <td>${user.getEmail()}</td>
-                                <td>${order.getTotal()}</td>
-                                <td>${order.getStatus()}</td>
-                                <td></td>
-                                <td>${order.getOrderdate()}</td>
-                                <td><a class="btn btn-outline-dark"><i class="fa fa-caret-right"></i></a></td>
-                            </tr>
+
+                    <!-- Products -->
+                    <section class="tiles">
+                        <c:forEach items="${books}" var="book">
+                            <article class="style1">
+                                <span class="image">
+                                    <img src="${book.getImage()}" alt="" />
+                                </span>
+                                <a href="Book?id=${book.getId()}">
+                                    <h2>${book.getTitle()}</h2>
+                                    <h3 style="font-size: 0.85em;"><i>${book.getAuthor()}</i></h3>
+                                    <c:if test="${book.issale()}">
+                                        <p>
+                                            <del>$${book.getPrice()}</del> 
+                                            <strong>$${Math.round(book.getPrice()*(100-book.getDiscount()))/100}</strong>
+                                        </p>
+                                    </c:if>
+                                    <c:if test="${!book.issale()}">
+                                        <p><strong>$${book.getPrice()}</strong></p>
+                                    </c:if>
+                                        <button href="Cart?service=addToCart&bookID=${book.getId()}">Add to Cart</button>
+                                </a>
+                            </article>
                         </c:forEach>
-                    </table>
+                    </section>
                 </div>
             </div>
 

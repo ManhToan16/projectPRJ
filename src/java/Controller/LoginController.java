@@ -38,7 +38,7 @@ public class LoginController extends HttpServlet {
             session.setAttribute("user", user);
             if (user.is_super()) {
                 //response.sendRedirect("./views/admin/Admin.jsp");
-                forward(request, response, "/admin/productmanage.jsp");
+                forward(request, response, "/admin/categorymanager.jsp");
             } else {
                 response.sendRedirect(request.getParameter("origin"));
             }
