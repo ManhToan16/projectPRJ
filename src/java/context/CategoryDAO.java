@@ -34,7 +34,7 @@ public class CategoryDAO {
         int n = 0;
         try {
             stm = cnn.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
-            String sql = "insert [Category] values (N'" + name + "')";
+            String sql = "insert [Category] ([name]) values (N'" + name + "')";
             n = stm.executeUpdate(sql);
         } catch (Exception e) {
             System.out.println("add Error:" + e.getMessage());

@@ -134,7 +134,7 @@ public class CartController extends HttpServlet {
                                 try {
                                     String key = em.nextElement().toString();
                                     Book get = (Book) session.getAttribute(key);
-                                    OrderItem item = new OrderItem(orderid, Integer.parseInt(key), get.getQuantity(), get.getRealPrice());
+                                    OrderItem item = new OrderItem(orderid, Integer.parseInt(key), get.getTitle(), get.getQuantity(), get.getRealPrice());
                                     if (dao.addOrderItem(item) > 0) {
                                         session.removeAttribute(key);
                                     }

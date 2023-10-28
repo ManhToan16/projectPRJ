@@ -51,6 +51,11 @@
                                 <div class="panel-body table-responsive">
                                     <div class="sliderList">
                                         <form action="Category" method="POST">
+                                            <div class="form-group col-md-12">
+                                                <label class="control-label">ID</label>
+                                                <input class="form-control" style="width:50%;" type="text"  name="proid" readonly value="Auto genarated">
+                                                <input class="form-control" type="hidden"  name="index" value="${index}">
+                                            </div>
                                             <div class="form-group col-md-2">
                                                 <label for="exampleSelect1" class="control-label">Category Name</label>
                                             </div>

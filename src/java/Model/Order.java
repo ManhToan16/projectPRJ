@@ -5,6 +5,8 @@
 
 package Model;
 
+import context.UserDAO;
+
 /* @author ACER */
 public class Order {
     private int id;
@@ -87,5 +89,8 @@ public class Order {
         this.shipper = shipper;
     }
     
-    
+    public String getUsername(){
+        UserDAO dao = new UserDAO();
+        return dao.getUsername(this.userid);
+    }
 }

@@ -9,6 +9,7 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Random;
 import java.util.stream.IntStream;
 
@@ -44,7 +45,7 @@ public class UserDAO {
                 int userid = rs.getInt(1);
                 String name = rs.getString(2);
                 String gender = rs.getBoolean(3) ? "Male" : "Female";
-                SimpleDateFormat f = new SimpleDateFormat("dd/mm/yyyy");
+                SimpleDateFormat f = new SimpleDateFormat("dd/MM/yyyy");
                 String dob = f.format(rs.getDate(4));
                 String email = rs.getString(5);
                 String phone = rs.getString(6);
@@ -158,5 +159,43 @@ public class UserDAO {
             System.out.println("getNumberUser Error");
         }
         return -1;
+    }
+
+    public ArrayList<User> getAllUsers() {
+        ArrayList<User> list = new ArrayList<>();
+        try {
+            stm = cnn.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
+            String sql = "Select * from [User] where [is_super] = 0";
+            rs = stm.executeQuery(sql);
+            while (rs.next()) {
+                int userid = rs.getInt(1);
+                String name = rs.getString(2);
+                String gender = rs.getBoolean(3) ? "Male" : "Female";
+                SimpleDateFormat f = new SimpleDateFormat("dd/mm/yyyy");
+                String dob = f.format(rs.getDate(4));
+                String email = rs.getString(5);
+                String phone = rs.getString(6);
+                String address = rs.getString(7);
+                String username = rs.getString(8);
+               list.add(new User(userid, name, username, gender, dob, email, phone, address));
+            }
+        } catch (Exception e) {
+            System.out.println("getUser Error:" + e.getMessage());
+        }
+        return list;
+    }
+
+    public String getUsername(int userid) {
+        try{
+            stm = cnn.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
+            String sql = "select [username] from [User] where [id] = "+userid;
+            rs = stm.executeQuery(sql);
+            if(rs.next()){
+                return rs.getString(1);
+            }
+        }catch(Exception e){
+            System.out.println("getNumberUser Error");
+        }
+        return null;
     }
 }

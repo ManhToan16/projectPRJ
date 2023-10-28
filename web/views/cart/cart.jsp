@@ -17,13 +17,69 @@
         <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css" />
         <link rel="stylesheet" href="assets/css/main.css" />
         <noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+        <style>
+            table th{
+                font-size: 1em;
+                padding: 0.75em;
+                text-align: left;
+            }
+            table td{
+                vertical-align: middle;
+            }
+            img{
+                border: 1px solid black;
+                border-radius: 1px;
+            }
+        </style>
     </head>
     <body class="is-preload">
         <!-- Wrapper -->
         <div id="wrapper">
 
             <!-- Header -->
-            <jsp:include page="../header.jsp"/>
+            <header id="header">
+    <div class="inner">
+        <!-- Logo -->
+        <a href="./Home" class="logo">
+            <span class="fa fa-book"></span>
+            <span class="title">IIBOOK</span>
+        </a>
+
+
+        <!-- Nav -->
+        <nav>
+            <ul>
+                <li><a href="#menu">Menu</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
+
+<!-- Menu -->
+<nav id="menu">
+    <h2>${sessionScope.user==null? "Menu": ("Welcome ")}${sessionScope.user.getName()}</h2>
+    <ul>
+        <li><a href="./Home">Home</a></li>
+        
+        <li><a href="./Book?id=0">Bookshelf</a></li>
+
+        <li><a href="./Cart">Cart</a></li>
+
+            <% 
+                if(session.getAttribute("user")==null){ 
+            %>
+            <li><a href="about.jsp">About</a></li>
+            
+        <li><a href="Login?origin=./Cart"><i class="fa fa-sign-in"></i>Login</a></li>
+            <% } else{ %>
+        <li><a href="./Order">Order History</a></li>
+        
+        <li><a href="about.jsp">About</a></li>
+        
+        <li><a href="Logout"><i class="fa fa-sign-out"></i>Logout</a></li>
+            <% }%>
+    </ul>
+</nav>
 
             <!-- Main -->
             <div id="main">
@@ -64,8 +120,8 @@
                             </form>
                         </c:forEach>
                         <tr>
-                            <th colspan="5">Total order</th>
-                            <th colspan="3"><%=Math.round(totalOrder*100)/(float)100%></th>
+                            <th colspan="5" style="text-align: center;">Total order</th>
+                            <th colspan="3">$<%=Math.round(totalOrder*100)/(float)100%></th>
                         </tr>
                     </table>
                 </div>
@@ -118,7 +174,7 @@
                     </section>
 
                     <ul class="copyright">
-                        <li>HLV </li>
+                        <li>@HLV </li>
                     </ul>
                 </div>
             </footer>

@@ -41,7 +41,7 @@ public class CategoryManager extends HttpServlet {
                 break;
             default:
                 ArrayList<Category> cates = dao.getCategories();
-                session.setAttribute("cates", cates);
+                request.setAttribute("cates", cates);
                 request.getRequestDispatcher("/admin/categorymanager.jsp").forward(request, response);
         }
     }
@@ -65,11 +65,14 @@ public class CategoryManager extends HttpServlet {
                 request.setAttribute("name", name);
                 request.getRequestDispatcher("/admin/categorymanager.jsp").forward(request, response);
             } else {
-                response.sendRedirect("Category");
+                request.setAttribute("error", "Add Successfully!");
+                request.getRequestDispatcher("/admin/categorymanager.jsp").forward(request, response);
             }
         } else {
             dao.editCategory(Integer.parseInt(cid), name);
-            response.sendRedirect("Category");
+            request.setAttribute("error", "Name Edited!");
+            request.setAttribute("name", name);
+            request.getRequestDispatcher("/admin/categorymanager.jsp").forward(request, response);
         }
     }
 

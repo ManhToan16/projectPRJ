@@ -41,6 +41,17 @@ public class User {
         this.password = password;
     }
 
+    public User(int id, String name, String username, String gender, String dob, String email, String phone, String address) {
+        this.id = id;
+        this.name = name;
+        this.username= username;
+        this.gender = gender;
+        this.dob = dob;
+        this.email = email;
+        this.phone = phone;
+        this.address = address;
+    }
+
     public boolean is_super() {
         return is_super;
     }

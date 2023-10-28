@@ -25,7 +25,7 @@
 
         <style>
             .left-aside{
-                height: 1550px;
+                height: 100%;
             }
             img{
                 border: 1px solid black;

@@ -9,12 +9,14 @@ package Model;
 public class OrderItem {
     private int orderid;
     private int bookid;
+    private String itemname;
     private int quantity;
     private float price;
 
-    public OrderItem(int orderid, int bookid, int quantity, float price) {
+    public OrderItem(int orderid, int bookid, String itemname, int quantity, float price) {
         this.orderid = orderid;
         this.bookid = bookid;
+        this.itemname = itemname;
         this.quantity = quantity;
         this.price = price;
     }
@@ -49,6 +51,14 @@ public class OrderItem {
 
     public void setQuantity(int quantity) {
         this.quantity = quantity;
+    }
+
+    public String getItemname() {
+        return itemname;
+    }
+
+    public void setItemname(String itemname) {
+        this.itemname = itemname;
     }
     
     

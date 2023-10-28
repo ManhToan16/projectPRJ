@@ -4,7 +4,7 @@
 <html>
     <head>
         <meta charset="UTF-8">
-        <title>Director | Quan ly san pham</title>
+        <title>${service} Book</title>
         <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
         <meta name="description" content="Developed By M Abdur Rokib Promy">
         <meta name="keywords" content="Admin, Bootstrap 3, Template, Theme, Responsive">
@@ -27,109 +27,124 @@
             .left-aside{
                 height: 1550px;
             }
+            img{
+                border: 1px solid black;
+                border-radius: 2px;
+            }
         </style>
     </head>
     <body class="skin-black">
-    <c:if test="${param['index']==null }">   
-        <c:set var = "index" scope = "page" value = "1"/>
-    </c:if>
-    <c:if test="${param['index']!=null}">
-        <c:set var = "index" scope = "page" value = "${param['index']}"/>
-    </c:if>
-    <!-- header logo: style can be found in header.less -->
-    <jsp:include page="./header.jsp"/>
-    <div class="wrapper row-offcanvas row-offcanvas-left" style="height: 100%;">
-        <!-- Left side column. contains the logo and sidebar -->
-        <jsp:include page="./aside.jsp"/>
+        <c:if test="${param['index']==null }">   
+            <c:set var = "index" scope = "page" value = "1"/>
+        </c:if>
+        <c:if test="${param['index']!=null}">
+            <c:set var = "index" scope = "page" value = "${param['index']}"/>
+        </c:if>
+        <!-- header logo: style can be found in header.less -->
+        <jsp:include page="./header.jsp"/>
+        <div class="wrapper row-offcanvas row-offcanvas-left" style="height: 100%;">
+            <!-- Left side column. contains the logo and sidebar -->
+            <jsp:include page="./aside.jsp"/>
 
-        <!-- Right side column. Contains the navbar and content of the page -->
-        <aside class="right-side">
+            <!-- Right side column. Contains the navbar and content of the page -->
+            <aside class="right-side">
 
-            <!-- Main content -->
-            <section class="content">
-                <div class="row">
-                    <div class="col-xs-12">
-                        <div class="panel">
-                            <header class="panel-heading">
-                                Thêm  Sản Phẩm
-                            </header>
-                            <div class="row">
-                                <div class="form-group col-md-6">
-                                    <label class="control-label">ID</label>
-                                    <input class="form-control" type="text"  name="proid" readonly value="auto genarate">
-                                    <input class="form-control" type="hidden"  name="index" value="${index}">
+                <!-- Main content -->
+                <section class="content">
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <div class="panel">
+                                <header class="panel-heading">
+                                    ${service} Book
+                                </header>
+                                <div class="panel-body table-responsive">
+                                    <div class="sliderList">
+                                        <form action="BookManager" method="post">
+                                            <div class="form-group col-md-6">
+                                                <label class="control-label">ID</label>
+                                                <input class="form-control" style="width:25%;" type="text"  name="bid" readonly value="${(s.getId()!=0 && s.getId()!=null)?s.getId():"Auto genarated"}">
+                                            </div>
+                                            <div class="form-group col-md-6">
+                                                <label for="exampleSelect1" class="control-label">Title</label>
+                                                <input class="form-control" type="text" name="title" required value="${s.getTitle()}">
+                                            </div>
+                                            <div class="form-group col-md-6">
+                                                <label for="exampleSelect1" class="control-label">Author</label>
+                                                <input class="form-control" type="text" name="author" required value="${s.getAuthor()}">
+                                            </div>
+                                            <div class="form-group col-md-6">
+                                                <label class="control-label">Category</label>
+                                                <select class="form-control" name="cid">
+                                                    <c:forEach var="cate" items="${cates}">
+                                                        <option value="${cate.getId()}" ${cate.getId()==s.getCategoryid()?"selected":""}>${cate.getName()}</option>
+                                                    </c:forEach>
+                                                        <option value="0" ${s.getCategoryid()==null?"selected":""}>Uncategorized</option>
+                                                </select>
+                                            </div>
 
-                                </div>
-                                <div class="form-group col-md-6">
-                                    <label for="exampleSelect1" class="control-label">Title</label>
-                                    <input class="form-control" type="text" name="protitle" required value="${s.getTitle()}">
-                                </div>
-                                <div class="form-group col-md-6">
-                                    <label class="control-label">Category:</label>
-                                    <select class="form-control" name="categoryId" style="display: inline; width: 100px;">
-                                        <c:forEach var="cate" items="${cate}">
-                                            <option value="${cate.getSetting_id()}" ${cate.getValue()==s.getCategory()?"selected":""}>${cate.getValue()}</option>
-                                        </c:forEach>
-                                    </select>
-                                </div>
+                                            <div class="form-group col-md-6">
+                                                <label class="control-label">Price</label>
+                                                $<input class="form-control" type="text" name="price" pattern="[+-]?([0-9]*[.])?[0-9]+" required value="${s.getPrice()}">
 
-                                <div class="form-group col-md-6">
-                                    <label class="control-label">Price:</label>
-                                    <input class="form-control" type="text" name="price" required value="${s.getPrice()}">
-
-                                </div>
-                                <div class="form-group col-md-6">
-                                    <label class="control-label">Sale:</label>
-                                    <input type="checkbox" name="salePrice" required value="${s.getSalePrice()}">
-                                </div>
-                                <div class="form-group col-md-6">
-                                    <label class="control-label">Disconut</label>
-                                    <input class="form-control" type="text" name="price" required value="${s.getPrice()}">
-                                </div>
-                                <div class="form-group col-md-6">
-                                    <label class="control-label">Stock:</label>
-                                    <input class="form-control" type="text" name="stock" required value="${s.getStock()}">
-                                </div>
-                                <div class="form-group col-md-6">
-                                    <label class="control-label">Create Date:</label>
-                                    <input class="form-control" type="date" name="createDate" required value="${s.getCreateDate()}">
-                                </div>
-                                <div class="form-group col-md-12">
-                                    <label class="control-label">Description:</label>
-                                    <textarea class="form-control" name="Description" style="height: 95px;">${s.getDescription()}</textarea>
-                                </div>
-                                <div class="form-group col-md-10">
-                                    <label class="control-label" >Image</label>
-
-                                    <input class="form-control" id="img${s.getId()}" onchange="changeimg${s.getId()}()" name="image" type="file" >
-                                    <input name="proimage" id="image${s.getId()}" value="${s.getImg()}" type="hidden" >
-                                    <image  src="${s.getImg()}" id="demoimg${s.getId()}" style="margin-top: 5px;" width="50%">
+                                            </div>
+                                            <div class="form-group col-md-6">
+                                                <label class="control-label">Discount</label>
+                                                %<input class="form-control" type="text" name="discount" pattern="[0-9]+" required value="${s.getDiscount()}">
+                                            </div>
+                                            <div class="form-group col-md-6">
+                                                <label class="control-label">Stock</label>
+                                                <input class="form-control" type="text" name="stock" required value="${s.getQuantity()}">
+                                            </div>
+                                            <div class="form-group col-md-6">
+                                                <label class="control-label">Sale</label>
+                                                <input type="checkbox" name="issale" value="true" ${s.issale()?"checked":""}>
+                                            </div>
+                                            <div class="form-group col-md-12">
+                                                <label class="control-label">Description:</label>
+                                                <textarea class="form-control" name="description" style="height: 95px;">${s.getDescription()}</textarea>
+                                            </div>
+                                            <div class="form-group col-md-10">
+                                                <label class="control-label" >Image Link</label>
+                                                <input class="form-control" type="text" name="image" required value="${s.getImage()}">
+<!--                                                <input class="form-control" id="img" onchange="changeimg()" name="image" type="file" -->
+                                                <input name="proimage" id="image" value="${s.getImage()}" type="hidden" >
+                                                <img  src="${s.getImage()}" id="demoimg${s.getId()}" style="margin-top: 5px;" height="100">
+                                            </div>
+                                            <div class="col-md-10">
+                                                <div class="left-filter"> 
+                                                    <input class="btn ${service=="Add"?"btn-primary":"btn-outline-danger"}" name="in" type="submit" value="${service}">
+                                                </div>
+                                                <c:if test="${error !=null}">
+                                                    ${error}
+                                                </c:if>
+                                            </div>
+                                        </form>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-            </section><!-- /.content -->
-            <div class="footer-main">
-                Copyright &copy Director, 2014
-            </div>
-        </aside><!-- /.right-side -->
+                </section><!-- /.content -->
+                <div class="footer-main">
+                    Copyright &copy Director, 2014
+                </div>
+            </aside><!-- /.right-side -->
 
 
-    </div><!-- ./wrapper -->
+        </div><!-- ./wrapper -->
 
 
 
-    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
-    <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
-    <script src="https://cdn.datatables.net/1.12.1/js/dataTables.bootstrap5.min.js"></script>
-    <script>
-                                        $(document).ready(function () {
-                                            $("#tablepro").DataTable({bFilter: false, bInfo: false, paging: false});
-                                        });
-    </script>
-    <!-- Bootstrap -->
-    <script src="./admin/js/bootstrap.min.js" type="text/javascript"></script>
-    <!-- Director App -->
-    <script src="./admin/js/Director/app.js" type="text/javascript"></script>
-</body>
+        <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+        <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
+        <script src="https://cdn.datatables.net/1.12.1/js/dataTables.bootstrap5.min.js"></script>
+        <script>
+                                                $(document).ready(function () {
+                                                    $("#tablepro").DataTable({bFilter: false, bInfo: false, paging: false});
+                                                });
+        </script>
+        <!-- Bootstrap -->
+        <script src="./admin/js/bootstrap.min.js" type="text/javascript"></script>
+        <!-- Director App -->
+        <script src="./admin/js/Director/app.js" type="text/javascript"></script>
+    </body>
 </html>

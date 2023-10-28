@@ -21,7 +21,49 @@
         <div id="wrapper">
 
             <!-- Header -->
-            <jsp:include page="../header.jsp"/>
+            <header id="header">
+    <div class="inner">
+        <!-- Logo -->
+        <a href="./Home" class="logo">
+            <span class="fa fa-book"></span>
+            <span class="title">IIBOOK</span>
+        </a>
+
+
+        <!-- Nav -->
+        <nav>
+            <ul>
+                <li><a href="#menu">Menu</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
+
+<!-- Menu -->
+<nav id="menu">
+    <h2>${sessionScope.user==null? "Menu": ("Welcome ")}${sessionScope.user.getName()}</h2>
+    <ul>
+        <li><a href="./Home">Home</a></li>
+        
+        <li><a href="./Book?id=0">Bookshelf</a></li>
+
+        <li><a href="./Cart">Cart</a></li>
+
+            <% 
+                if(session.getAttribute("user")==null){ 
+            %>
+            <li><a href="about.jsp">About</a></li>
+            
+        <li><a href="Login?origin=./Book?id=${book.getId()}"><i class="fa fa-sign-in"></i>Login</a></li>
+            <% } else{ %>
+        <li><a href="./Order">Order History</a></li>
+        
+        <li><a href="about.jsp">About</a></li>
+        
+        <li><a href="Logout"><i class="fa fa-sign-out"></i>Logout</a></li>
+            <% }%>
+    </ul>
+</nav>
 
             <!-- Main -->
             <div id="main">

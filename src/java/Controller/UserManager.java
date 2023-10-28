@@ -5,19 +5,24 @@
 
 package Controller;
 
+import Model.User;
+import context.UserDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import java.util.ArrayList;
 
 /* @author ACER */
 public class UserManager extends HttpServlet {
    
     protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        
+        UserDAO dao = new UserDAO();
+        ArrayList<User> users = dao.getAllUsers();
+        request.setAttribute("users", users);
         request.getRequestDispatcher("/admin/usermanager.jsp").forward(request, response);
     } 
 

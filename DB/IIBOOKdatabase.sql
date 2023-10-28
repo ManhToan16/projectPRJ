@@ -65,7 +65,7 @@ SET QUOTED_IDENTIFIER ON
 GO
 CREATE TABLE [dbo].[Book](
 	[id] int IDENTITY(1,1) NOT NULL,
-	[title] [nvarchar](80),
+	[title] [nvarchar](100),
 	[author] [nvarchar](80),
 	[categoryid] int,
 	[quantity] smallint,
@@ -141,7 +141,8 @@ SET QUOTED_IDENTIFIER ON
 GO
 CREATE TABLE [dbo].[OrderItem](
 	[orderid] int NOT NULL,
-	[bookid] int NOT NULL,
+	[bookid] int,
+	[itemname] [nvarchar](100),
 	quantity [smallint] ,
 	price decimal(10,2) ,
 )
@@ -291,6 +292,11 @@ BEGIN
 		Select i.price*i.quantity  from [inserted] i where i.orderid = [Order].id)
 	FROM [Order]
 	Join inserted on [Order].id = inserted.orderid
+	update [Book]
+	set [quantity] = [Book].[quantity] - (
+		select i.quantity from [inserted] i where i.bookid=[Book].id)
+	from [Book]
+	join inserted on [Book].id= inserted.bookid
 END
 go
 Create trigger Shipping on [Order] After INSERT AS

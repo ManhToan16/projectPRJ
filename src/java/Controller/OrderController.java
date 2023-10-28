@@ -4,7 +4,9 @@
  */
 package Controller;
 
+import Model.Customer;
 import Model.Order;
+import Model.OrderItem;
 import Model.User;
 import context.OrderDAO;
 import java.io.IOException;
@@ -23,18 +25,28 @@ public class OrderController extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try ( PrintWriter out = response.getWriter()) {
             String service = request.getParameter("service");
+            OrderDAO od = new OrderDAO();
+
             if (service == null) {
                 service = "List My Orders";
             }
             HttpSession session = request.getSession();
             switch (service) {
                 default:
-                    User user = (User)session.getAttribute("user");
-                    OrderDAO od = new OrderDAO();
+                    User user = (User) session.getAttribute("user");
                     ArrayList<Order> orders = od.getUserOrders(user.getId());
                     request.setAttribute("orders", orders);
                     request.getRequestDispatcher("/views/user/orders.jsp").forward(request, response);
                     break;
+                case "details":
+                    String oid = request.getParameter("oid");
+                    ArrayList<OrderItem> items = od.getItems(oid);
+                    Order order = od.getOrderById(oid);
+                    Customer customer = od.getCustomerByOrder(Integer.parseInt(oid));
+                    request.setAttribute("customer", customer);
+                    request.setAttribute("items", items);
+                    request.setAttribute("order", order);
+                    request.getRequestDispatcher("/views/user/bill_details.jsp").forward(request, response);
             }
         }
     }
