@@ -1,5 +1,11 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %><%@page import="Model.User" %>
+<%
+            User user = (User)session.getAttribute("user");
+            if(user==null || !user.is_super()){
+                response.sendRedirect("./Home");
+            }
+%>
 
 <!DOCTYPE html>
 <html>

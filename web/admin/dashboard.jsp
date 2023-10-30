@@ -1,7 +1,13 @@
 
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-
+<%@page import="Model.User" %>
+<%
+            User user = (User)session.getAttribute("user");
+            if(user==null || !user.is_super()){
+                response.sendRedirect("./Home");
+            }
+%>
 <!DOCTYPE html>
 <html>
     <head>
@@ -25,8 +31,8 @@
         <!-- Theme style -->
         <link href="./admin/css/style.css" rel="stylesheet" type="text/css" />
         <style type="text/css">
-
         </style>
+        
     </head>
     <body class="skin-black">
         <!-- header logo: style can be found in header.less -->

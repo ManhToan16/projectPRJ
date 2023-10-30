@@ -18,19 +18,8 @@ public class LogoutController extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession session = request.getSession();
-        String referer;
-        if (((User) session.getAttribute("user")).is_super()) {
-            referer = "./Home";
-        } else {
-            referer = (String) request.getHeader("Referer");
-        }
         session.removeAttribute("user");
-
-        if (referer.equals("http://localhost:8080/IIBook/Order")) {
-            response.sendRedirect("./Home");
-        } else {
-            response.sendRedirect(referer);
-        }
+        response.sendRedirect("./Home");
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

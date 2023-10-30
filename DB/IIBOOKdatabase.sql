@@ -147,22 +147,6 @@ CREATE TABLE [dbo].[OrderItem](
 	price decimal(10,2) ,
 )
 GO
-/****** Object:  Table [dbo].[Discount] ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-CREATE TABLE [dbo].[Discount](
-	id int IDENTITY(1,1) not null,
-	discounttype varchar(40) not null,
-	flag smallint ,
-	notes nvarchar(200),
-	discount decimal(4,2) not null
-CONSTRAINT [PK_discount] PRIMARY KEY NONCLUSTERED 
-(
-	[discounttype] ASC
-)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
-) ON [PRIMARY]
 
 /****** Object:  Table [dbo].[Invoice] ******/
 SET ANSI_NULLS ON
@@ -218,14 +202,6 @@ GO
 INSERT [dbo].[User] ([fullname], [gender], [dob], [email], [phone], [address], [username], [password], [is_super]) VALUES ( N'Vinh Nguyen', 1, CAST(N'2002-12-25' AS Date), N'vinhvn102@gmail.com', N'0382132025', N'FBT University ', N'admin', N'admin',1)
 INSERT [dbo].[User] ([fullname], [gender], [dob], [email], [phone], [address], [username], [password], [is_super]) VALUES ( N'Vinh Nguyen', 1, CAST(N'2002-12-25' AS Date), N'vinhvn102@gmail.com', N'0382132025', N'FBT University ', N'vinh', N'2002',0)
 GO
-INSERT [dbo].[Discount] ([discounttype], [flag], [notes], [discount]) VALUES (N'NewBook', NULL, N'Brand new spice', CAST(10.00 AS Decimal(4, 2)))
-INSERT [dbo].[Discount] ([discounttype], [flag], [notes], [discount]) VALUES (N'Bronze', NULL, N'Non-prime', CAST(10.00 AS Decimal(4, 2)))
-INSERT [dbo].[Discount] ([discounttype], [flag], [notes], [discount]) VALUES (N'Silver', NULL, N'Mediocre', CAST(15.00 AS Decimal(4, 2)))
-INSERT [dbo].[Discount] ([discounttype], [flag], [notes], [discount]) VALUES (N'Gold', NULL, N'Top-tier', CAST(20.00 AS Decimal(4, 2)))
-INSERT [dbo].[Discount] ([discounttype], [flag], [notes], [discount]) VALUES (N'Ruby', NULL, N'PRIME', CAST(25.00 AS Decimal(4, 2)))
-INSERT [dbo].[Discount] ([discounttype], [flag], [notes], [discount]) VALUES (N'GoodDeal', 3, N'Rising Star', CAST(10.00 AS Decimal(4, 2)))
-INSERT [dbo].[Discount] ([discounttype], [flag], [notes], [discount]) VALUES (N'BigDeal', 10, N'Meteor', CAST(20.00 AS Decimal(4, 2)))
-GO
 Insert [dbo].[Category] ([name]) values (N'Crime, Thriller & Mystery'),(N'Fantasy, Horror'),(N'Science/Historical Fiction'),(N'Manga&LN')
 GO
 INSERT [dbo].[Book] ( [title], [author], [categoryid], [quantity], [price], [is_sale], [discount], [image], [description]) VALUES (N'Gone Girl ', N'Gillian Flynn', 1, 200, CAST(28.00 AS Decimal(10, 2)), 1, 46, N'https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1554086139l/19288043.jpg', N'Marriage can be a real killer.<br>
@@ -279,6 +255,32 @@ GO
 INSERT [dbo].[Book] ( [title], [author], [categoryid], [quantity], [price], [is_sale], [discount], [image], [description]) VALUES ( N'One Piece, Volume 1: Romance Dawn', N'Eiichiro Oda', 4, 200, CAST(22.00 AS Decimal(10, 2)), 1, 15, N'https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1318523719l/1237398.jpg', N'A new shonen sensation in Japan, this series features Monkey D. Luffy, whose main ambition is to become a pirate. Eating the Gum-Gum Fruit gives him strange powers but also invokes the fruit''s curse: anybody who consumes it can never learn to swim. Nevertheless, Monkey and his crewmate Roronoa Zoro, master of the three-sword fighting style, sail the Seven Seas of swashbuckling adventure in search of the elusive treasure "One Piece."')
 GO
 INSERT [dbo].[Book] ( [title], [author], [categoryid], [quantity], [price], [is_sale], [discount], [image], [description]) VALUES ( N'Classroom of the Elite Vol. 1', N'Syougo Kinugasa', 4, 200, CAST(13.99 AS Decimal(10, 2)), 1, 10, N'https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1540974678l/41085104.jpg', N'Students of the prestigious Tokyo Metropolitan Advanced Nurturing High School are given remarkable freedom—if they can win, barter, or save enough points to work their way up the ranks! Ayanokoji Kiyotaka has landed at the bottom in the scorned Class D, where he meets Horikita Suzune, who’s determined to rise up the ladder to Class A. Can they beat the system in a school where cutthroat competition is the name of the game?')
+GO
+SET IDENTITY_INSERT [dbo].[Order] ON 
+GO
+INSERT [dbo].[Order] ([id], [userid], [orderdate], [subtotal], [shipper], [total], [status]) VALUES (1, 2, CAST(N'2022-07-12' AS Date), CAST(61.76 AS Decimal(10, 2)), N'Fast Delivery', CAST(63.26 AS Decimal(10, 2)), N'Wait')
+GO
+INSERT [dbo].[Order] ([id], [userid], [orderdate], [subtotal], [shipper], [total], [status]) VALUES (2, 2, CAST(N'2022-07-12' AS Date), CAST(81.53 AS Decimal(10, 2)), N'Free Delivery', CAST(81.53 AS Decimal(10, 2)), N'Done')
+GO
+SET IDENTITY_INSERT [dbo].[Order] OFF
+GO
+SET IDENTITY_INSERT [dbo].[Customer] ON 
+GO
+INSERT [dbo].[Customer] ([id], [orderid], [userid], [name], [email], [phone], [address]) VALUES (1, 1, 2, N'Thanh Vinh', N'vinhvn102@gmail.com', N'0382132025', N'Thach Hoa, Thach That')
+GO
+INSERT [dbo].[Customer] ([id], [orderid], [userid], [name], [email], [phone], [address]) VALUES (2, 2, 2, N'Vinh Nguyen', N'vinhvn102@gmail.com', N'0382132025', N'FBT University ')
+GO
+SET IDENTITY_INSERT [dbo].[Customer] OFF
+GO
+INSERT [dbo].[OrderItem] ([orderid], [bookid], [itemname], [quantity], [price]) VALUES (1, 2, N'And Then There Were None', 1, CAST(18.29 AS Decimal(10, 2)))
+GO
+INSERT [dbo].[OrderItem] ([orderid], [bookid], [itemname], [quantity], [price]) VALUES (1, 13, N'Fullmetal Alchemist, Vol. 1', 1, CAST(18.69 AS Decimal(10, 2)))
+GO
+INSERT [dbo].[OrderItem] ([orderid], [bookid], [itemname], [quantity], [price]) VALUES (1, 5, N'Lord of the Mysteries', 2, CAST(12.39 AS Decimal(10, 2)))
+GO
+INSERT [dbo].[OrderItem] ([orderid], [bookid], [itemname], [quantity], [price]) VALUES (2, 12, N'All the Light We Cannot See', 1, CAST(18.56 AS Decimal(10, 2)))
+GO
+INSERT [dbo].[OrderItem] ([orderid], [bookid], [itemname], [quantity], [price]) VALUES (2, 8, N'A Game Of Thrones: A Song of Ice and Fire', 3, CAST(20.99 AS Decimal(10, 2)))
 GO
 Create trigger CalcuSubtotal on [OrderItem] AFTER INSERT AS
 BEGIN
