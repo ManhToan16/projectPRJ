@@ -44,7 +44,7 @@
 
             <!-- Menu -->
             <nav id="menu">
-                <h2>${sessionScope.user==null? "Menu": ("Welcome ")}${sessionScope.user.getName()}</h2>
+                <h2><a href="./User" >${sessionScope.user==null? "Menu": ("Welcome ")}${sessionScope.user.getName()}</a></h2>
                 <ul>
                     <li><a href="./Home">Home</a></li>
 
@@ -167,7 +167,7 @@
                                     <c:if test="${!book.issale()}">
                                         <p><strong>$${book.getPrice()}</strong></p>
                                     </c:if>
-                                    <button class="btn-danger" href="Cart?service=addToCart&bookID=${book.getId()}">Add to Cart</button>
+                                    <!--button class="btn-danger" href="Cart?service=addToCart&bookID=${book.getId()}">Add to Cart</button-->
                                 </a>
                             </article>
                         </c:forEach>

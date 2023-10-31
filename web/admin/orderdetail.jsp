@@ -34,6 +34,14 @@
             .left-aside{
                 height: 1550px;
             }
+            h3{
+                margin-top:150px;
+                text-align: center;
+                }
+                .control-label
+                {
+                    font-size: 15px;
+                    }
         </style>
     </head>
     <body class="skin-black">
@@ -64,20 +72,20 @@
                                     <div class="sliderList">
                                         <div class="form-group col-md-6">
                                             <label class="control-label">ID:</label>${order.getId()}
-                                            <label for="exampleSelect1" class="control-label">Customer: </label>${customer.getName()}
-                                            <label for="exampleSelect1" class="control-label">Email: </label>${customer.getEmail()}
-                                            <label class="control-label">Phone: </label>${customer.getPhone()}
+                                            <br><label for="exampleSelect1" class="control-label">Customer: </label>${customer.getName()}
+                                            <br><label for="exampleSelect1" class="control-label">Email: </label>${customer.getEmail()}
+                                            <br><label class="control-label">Phone: </label>${customer.getPhone()}
                                         </div>
                                         <div class="form-group col-md-6">
                                             <label class="control-label">Order Date: </label>${order.getOrderdate()}
-                                            <label class="control-label">Address: </label>${customer.getAddress()}
-                                            <label class="control-label">Cash On Delivery</label>
-                                            <label class="control-label">${order.getShipper()}</label>
+                                            <br><label class="control-label">Address: </label>${customer.getAddress()}
+                                            <br><label class="control-label">Cash On Delivery</label>
+                                            <br><label class="control-label">${order.getShipper()}</label>
                                         </div>
                                         <div class="body-section">
                                             <h3 class="heading">Purchase Order</h3>
                                             <br>
-                                            <table class="table-bordered">
+                                            <table class="table-bordered" width="1500px">
                                                 <thead>
                                                     <tr>
                                                         <th>Item Description</th>
@@ -97,15 +105,15 @@
                                                         </tr>
                                                     </c:forEach>
                                                     <tr>
-                                                        <th colspan="3" class="text-right">Subtotal</th>
+                                                        <th colspan="3" class="text-left">Subtotal:</th>
                                                         <td> $${order.getSubtotal()}</td>
                                                     </tr>
                                                     <tr>
-                                                        <th colspan="3" class="text-right">Shipping</th>
+                                                        <th colspan="3" class="text-left">Shipping:</th>
                                                         <td> ${order.getShipper()=="Fast Delivery"?"$1.5":"$0"}</td>
                                                     </tr>
                                                     <tr>
-                                                        <th colspan="3" class="text-right">ORDER TOTAL</th>
+                                                        <th colspan="3" class="text-left">ORDER TOTAL:</th>
                                                         <th> $${order.getTotal()}</th>
                                                     </tr>
                                                 </tbody>

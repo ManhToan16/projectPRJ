@@ -48,7 +48,7 @@
 
             <!-- Menu -->
             <nav id="menu">
-                <h2>${sessionScope.user==null? "Menu": ("Welcome ")}${sessionScope.user.getName()}</h2>
+                <h2><a href="./User" >${sessionScope.user==null? "Menu": ("Welcome ")}${sessionScope.user.getName()}</a></h2>
                 <ul>
                     <li><a href="./Home">Home</a></li>
 
@@ -56,7 +56,6 @@
 
                     <li><a href="./Cart">Cart</a></li>
 
-                    <li><a href="about.jsp">About</a></li>
 
                     <li><a href="./Order">Order History</a></li>
 

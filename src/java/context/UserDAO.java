@@ -198,4 +198,32 @@ public class UserDAO {
         }
         return null;
     }
+
+    public void updateUser(int id, String name, String phone, String address) {
+        try {
+            stm = cnn.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
+            String sql = "update [User] set "
+                    + "  [fullname] = N'" +name + "'"
+                    + ", [phone] = N'"+phone+"'"
+                    + ", [address] = N'"+address+"'"
+                    + "where [id] = "+id;
+            stm.executeUpdate(sql);
+        } catch (Exception e) {
+            System.out.println("updateUser Error:" + e.getMessage());
+        }
+    }
+
+    public boolean checkOldPass(int id,String oldpass) {
+        try {
+            stm = cnn.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
+            String sql = "select * from [User] where [id] = "+id+" AND [password]=N'"+oldpass+"'";
+            rs = stm.executeQuery(sql);
+            if(rs.next()){
+                return true;
+            }
+        } catch (Exception e) {
+            System.out.println("updateUser Error:" + e.getMessage());
+        }
+        return false;
+    }
 }

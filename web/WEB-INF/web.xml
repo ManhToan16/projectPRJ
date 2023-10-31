@@ -60,6 +60,10 @@
         <servlet-name>UserManager</servlet-name>
         <servlet-class>Controller.UserManager</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>UserController</servlet-name>
+        <servlet-class>Controller.UserController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>LoginController</servlet-name>
         <url-pattern>/Login</url-pattern>
@@ -111,6 +115,10 @@
     <servlet-mapping>
         <servlet-name>UserManager</servlet-name>
         <url-pattern>/UserManager</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>UserController</servlet-name>
+        <url-pattern>/User</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

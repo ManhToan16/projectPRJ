@@ -41,7 +41,7 @@
 
 <!-- Menu -->
 <nav id="menu">
-    <h2>${sessionScope.user==null? "Menu": ("Welcome ")}${sessionScope.user.getName()}</h2>
+    <h2><a href="./User" >${sessionScope.user==null? "Menu": ("Welcome ")}${sessionScope.user.getName()}</a></h2>
     <ul>
         <li><a href="./Home">Home</a></li>
         
@@ -94,12 +94,12 @@
                                 <div class="row">        
                                     <form action="Book" method="POST">
                                         <div class="col-sm-8">
-                                            <label class="control-label">Quantity</label>
+                                            <label class="control-label" >Quantity</label>
 
                                             <div class="row">
                                                 <div class="col-sm-6">
                                                     <div class="form-group">
-                                                        <input type="number" name="quantity" class="bg-transparent form-control" value="1" pattern="[0-9]+" required>
+                                                        <input type="number" name="quantity" max="${book.getQuantity()}" class="bg-transparent form-control" value="1" pattern="[0-9]+" required>
                                                     </div>
                                                 </div>
 

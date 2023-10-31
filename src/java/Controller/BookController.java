@@ -31,22 +31,50 @@ public class BookController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        int bookid = Integer.parseInt(request.getParameter("id"));
+        String bookid = request.getParameter("id");
+        String cid = request.getParameter("type");
+        String search = request.getParameter("search");
+        ArrayList<Book> books;
         BookDAO bd = new BookDAO();
-        if (bookid == 0) {
-            ArrayList<Book> books = bd.getBooks();
-            CategoryDAO cd = new CategoryDAO();
-            ArrayList<Category> types = cd.getCategories();
+        CategoryDAO cd = new CategoryDAO();
+        ArrayList<Category> types = cd.getCategories();
+        request.setAttribute("types", types);
+        if (search != null) {
+            if (!search.equals("")) {
+                int cate = Integer.parseInt(request.getParameter("cate"));
+                books = bd.searchBook(search, cate);
+                request.setAttribute("cate", cate);
+                request.setAttribute("books", books);
+                request.getRequestDispatcher("/views/book/bookshelf.jsp").forward(request, response);
+                return;
+            }
+        }
+        if (cid != null) {
+            if (!cid.equals("0")) {
+                books = bd.getBooksByCid(cid);
+                request.setAttribute("cate", cid);
+            } else {
+                books = bd.getBooks();
+                request.setAttribute("cate", 0);
+            }
             request.setAttribute("books", books);
-            request.setAttribute("types", types);
+            request.getRequestDispatcher("/views/book/bookshelf.jsp").forward(request, response);
+            return;
+        }
+
+        if (Integer.parseInt(bookid) == 0) {
+            books = bd.getBooks();
+            request.setAttribute("cate", 0);
+            request.setAttribute("books", books);
             request.getRequestDispatcher("/views/book/bookshelf.jsp").forward(request, response);
         } else {
-            Book book = bd.getBookById(bookid);
-            ArrayList<Book> likes = bd.getSimilarBooks(bookid, book.getCategoryid());
+            Book book = bd.getBookById(Integer.parseInt(bookid));
+            ArrayList<Book> likes = bd.getSimilarBooks(Integer.parseInt(bookid), book.getCategoryid());
             request.setAttribute("book", book);
             request.setAttribute("likes", likes);
             request.getRequestDispatcher("/views/book/book-details.jsp").forward(request, response);
         }
+
     }
 
     @Override
