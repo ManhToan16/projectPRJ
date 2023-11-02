@@ -112,7 +112,7 @@
                                     <td>${book.getTitle()}</td>
                                     <td>${book.getAuthor()}</td>
                                     <td>$${Math.round(book.getRealPrice()*100)/100}</td>
-                                    <td><input type="number" name="quantity" value="${book.getQuantity()}" class="bg-transparent form-control"></td>
+                                    <td><input type="number" name="quantity" min="1" value="${book.getQuantity()}" class="bg-transparent form-control"></td>
                                     <td>$${Math.round(book.getRealPrice()*book.getQuantity()*100)/100}</td>
                                     <td><button type="submit" name="service" value="update"><i class="fa fa-refresh"></i></button></td>
                                     <td><button type="submit" name="service" value="remove"><i class="fa fa-remove"></i></button></td>

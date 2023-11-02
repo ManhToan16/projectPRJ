@@ -99,7 +99,7 @@
                                             <div class="row">
                                                 <div class="col-sm-6">
                                                     <div class="form-group">
-                                                        <input type="number" name="quantity" max="${book.getQuantity()}" class="bg-transparent form-control" value="1" pattern="[0-9]+" required>
+                                                        <input type="number" name="quantity" min="1" max="${book.getQuantity()}" class="bg-transparent form-control" value="1" pattern="[0-9]+" required>
                                                     </div>
                                                 </div>
 

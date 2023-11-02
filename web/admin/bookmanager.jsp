@@ -122,7 +122,7 @@
                                                         <td data-toggle="modal" data-target="#Show${s.getId()}" style="cursor: pointer;">${s.getTitle()}</td>
                                                         <td>${s.getAuthor()}</td>
                                                         <td style="width: 150px;"><img  src="${s.getImage()}" width="100px"></td>
-                                                        <td>${s.getCategoryid()}</td>
+                                                        <td>${s.getCategory()}</td>
                                                         <td>${s.getQuantity()}</td>
                                                         <td>$${s.getPrice()}</td>
                                                         <td><input class="checkbox-inline" type="checkbox" ${s.issale()?"checked":""} disabled></td>

@@ -4,6 +4,8 @@
  */
 package Model;
 
+import context.CategoryDAO;
+
 public class Book {
     private int id;
     private String title, author;
@@ -125,4 +127,8 @@ public class Book {
         return (this.issale()?(this.price*(100-this.discount)/100) : this.price);
     }
     
+    public String getCategory(){
+        CategoryDAO dao =new CategoryDAO();
+        return dao.getCategory(this.categoryid);
+    }
 }

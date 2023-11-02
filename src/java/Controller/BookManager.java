@@ -24,6 +24,9 @@ public class BookManager extends HttpServlet {
             throws ServletException, IOException {
         String service = request.getParameter("service");
         String bid = request.getParameter("bid");
+        CategoryDAO cd = new CategoryDAO();
+                ArrayList<Category> cates = cd.getCategories();
+                request.setAttribute("cates", cates);
         BookDAO dao = new BookDAO();
         if (service == null) {
             service = "control panel";
@@ -43,9 +46,7 @@ public class BookManager extends HttpServlet {
                 response.sendRedirect("BookManager");
                 break;
             default:
-                CategoryDAO cd = new CategoryDAO();
-                ArrayList<Category> cates = cd.getCategories();
-                request.setAttribute("cates", cates);
+                
                 ArrayList<Book> books = dao.getBooks();
                 String xpage = request.getParameter("xpage");
                 int page;
@@ -79,6 +80,9 @@ public class BookManager extends HttpServlet {
         boolean issale = (request.getParameter("issale") != null);
         String description = request.getParameter("description");
         String img = request.getParameter("image");
+        CategoryDAO cd = new CategoryDAO();
+                ArrayList<Category> cates = cd.getCategories();
+                request.setAttribute("cates", cates);
         BookDAO dao = new BookDAO();
         switch (request.getParameter("in")) {
             case "Add":
