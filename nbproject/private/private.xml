@@ -3,12 +3,31 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/ACER/Desktop/Demo/IIBook/src/java/Controller/OrderController.java</file>
-            <file>file:/C:/Users/ACER/Desktop/Demo/IIBook/src/java/context/OrderDAO.java</file>
-            <file>file:/C:/Users/ACER/Desktop/Demo/IIBook/web/views/user/orders.jsp</file>
-            <file>file:/C:/Users/ACER/Desktop/Demo/IIBook/src/java/context/BookDAO.java</file>
-            <file>file:/C:/Users/ACER/Desktop/Demo/IIBook/src/java/Controller/BookManager.java</file>
-            <file>file:/C:/Users/ACER/Desktop/Demo/IIBook/web/views/cart/cart.jsp</file>
+            <file>file:/F:/FA23/PRJ301/PROJECT%20Bản%20hoàn%20thiện%20cuối/IIBOOK-master/web/WEB-INF/web.xml</file>
+            <file>file:/F:/FA23/PRJ301/PROJECT%20Bản%20hoàn%20thiện%20cuối/IIBOOK-master/src/java/Controller/OrderController.java</file>
+            <file>file:/F:/FA23/PRJ301/PROJECT%20Bản%20hoàn%20thiện%20cuối/IIBOOK-master/web/views/auth/login.jsp</file>
+            <file>file:/F:/FA23/PRJ301/PROJECT%20Bản%20hoàn%20thiện%20cuối/IIBOOK-master/src/java/context/UserDAO.java</file>
+            <file>file:/F:/FA23/PRJ301/PROJECT%20Bản%20hoàn%20thiện%20cuối/IIBOOK-master/src/java/Controller/Home.java</file>
+            <file>file:/F:/FA23/PRJ301/PROJECT%20Bản%20hoàn%20thiện%20cuối/IIBOOK-master/src/java/Controller/ForgotController.java</file>
+            <file>file:/F:/FA23/PRJ301/PROJECT%20Bản%20hoàn%20thiện%20cuối/IIBOOK-master/src/java/Controller/BookController.java</file>
+            <file>file:/F:/FA23/PRJ301/PROJECT%20Bản%20hoàn%20thiện%20cuối/IIBOOK-master/src/java/Controller/CartController.java</file>
+            <file>file:/F:/FA23/PRJ301/PROJECT%20Bản%20hoàn%20thiện%20cuối/IIBOOK-master/src/java/Controller/LogoutController.java</file>
+            <file>file:/F:/FA23/PRJ301/PROJECT%20Bản%20hoàn%20thiện%20cuối/IIBOOK-master/web/about.jsp</file>
+            <file>file:/F:/FA23/PRJ301/PROJECT%20Bản%20hoàn%20thiện%20cuối/IIBOOK-master/src/java/Model/Category.java</file>
+            <file>file:/F:/FA23/PRJ301/PROJECT%20Bản%20hoàn%20thiện%20cuối/IIBOOK-master/src/java/Controller/CategoryManager.java</file>
+            <file>file:/F:/FA23/PRJ301/PROJECT%20Bản%20hoàn%20thiện%20cuối/IIBOOK-master/src/java/Controller/SignupController.java</file>
+            <file>file:/F:/FA23/PRJ301/PROJECT%20Bản%20hoàn%20thiện%20cuối/IIBOOK-master/src/java/context/BookDAO.java</file>
+            <file>file:/F:/FA23/PRJ301/PROJECT%20Bản%20hoàn%20thiện%20cuối/IIBOOK-master/src/java/context/CartDAO.java</file>
+            <file>file:/F:/FA23/PRJ301/PROJECT%20Bản%20hoàn%20thiện%20cuối/IIBOOK-master/web/index.jsp</file>
+            <file>file:/F:/FA23/PRJ301/PROJECT%20Bản%20hoàn%20thiện%20cuối/IIBOOK-master/src/java/Model/Book.java</file>
+            <file>file:/F:/FA23/PRJ301/PROJECT%20Bản%20hoàn%20thiện%20cuối/IIBOOK-master/web/views/auth/changePW.jsp</file>
+            <file>file:/F:/FA23/PRJ301/PROJECT%20Bản%20hoàn%20thiện%20cuối/IIBOOK-master/web/views/cart/cart.jsp</file>
+            <file>file:/F:/FA23/PRJ301/PROJECT%20Bản%20hoàn%20thiện%20cuối/IIBOOK-master/src/java/Controller/BookManager.java</file>
+            <file>file:/F:/FA23/PRJ301/PROJECT%20Bản%20hoàn%20thiện%20cuối/IIBOOK-master/web/views/book/bookshelf.jsp</file>
+            <file>file:/F:/FA23/PRJ301/PROJECT%20Bản%20hoàn%20thiện%20cuối/IIBOOK-master/src/java/Controller/LoginADcontroller.java</file>
+            <file>file:/F:/FA23/PRJ301/PROJECT%20Bản%20hoàn%20thiện%20cuối/IIBOOK-master/src/java/Controller/OrderManager.java</file>
+            <file>file:/F:/FA23/PRJ301/PROJECT%20Bản%20hoàn%20thiện%20cuối/IIBOOK-master/src/java/Controller/LoginController.java</file>
+            <file>file:/F:/FA23/PRJ301/PROJECT%20Bản%20hoàn%20thiện%20cuối/IIBOOK-master/web/views/auth/signup.jsp</file>
         </group>
     </open-files>
 </project-private>

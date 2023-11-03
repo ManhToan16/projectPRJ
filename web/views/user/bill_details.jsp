@@ -1,6 +1,6 @@
 <%-- 
     Document   : bill_details
-    Created on : Jul 12, 2022, 2:49:38 PM
+    Created on : Nov 12, 2023, 2:49:38 PM
     Author     : FPT SHOP KM4
 --%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>

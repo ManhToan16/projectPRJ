@@ -1,7 +1,7 @@
 <%-- 
     Document   : checkout
-    Created on : Jun 15, 2022, 11:01:33 AM
-    Author     : ACER
+    Created on : Nov 15, 2023, 11:01:33 AM
+    Author     : ManhToan
 --%>
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -168,8 +168,8 @@
                     <section>
                         <h2>Contact Info</h2>
                         <ul class="alt">
-                            <li><span class="fa fa-github"></span> <a href="https://github.com/nekon0/IIBOOK">Our Project</a></li>
-                            <li><span class="fa fa-map-pin"></span> <a href="https://goo.gl/maps/ojwCjTqRteiA4B9U7"> DE336, FBT University</a></li>
+                            <li><span class="fa fa-github"></span> <a href="https://github.com/ManhToan16/projectPRJ">Our Project</a></li>
+                            <li><span class="fa fa-map-pin"></span> <a href="https://goo.gl/maps/ojwCjTqRteiA4B9U7"> BE-207, FBT University</a></li>
                         </ul>
                     </section>
 

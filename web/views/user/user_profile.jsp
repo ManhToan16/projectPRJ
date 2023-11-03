@@ -274,12 +274,12 @@
                                 <ul class="alt">
                                     <li>
                                         <span class="fa fa-github"></span>
-                                        <a href="https://github.com/nekon0/IIBOOK">Our Project</a>
+                                        <a href="https://github.com/ManhToan16/projectPRJ">Our Project</a>
                                     </li>
                                     <li>
                                         <span class="fa fa-map-pin"></span>
                                         <a href="https://goo.gl/maps/ojwCjTqRteiA4B9U7">
-                                            DE336, FBT University</a>
+                                            BE-207, FBT University</a>
                                     </li>
                                 </ul>
                                 <ul class="copyright">

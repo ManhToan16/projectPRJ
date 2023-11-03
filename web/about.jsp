@@ -1,7 +1,7 @@
 <%-- 
     Document   : about
-    Created on : Jun 17, 2022, 11:03:08 AM
-    Author     : ACER
+    Created on : Oct 17, 2023, 11:03:08 AM
+    Author     : ManhToan
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -91,12 +91,12 @@
                     <section>
                         <h2>Contact Info</h2>
                         <ul class="alt">
-                            <li><span class="fa fa-github"></span> <a href="https://github.com/nekon0/IIBOOK">Our Project</a></li>
-                            <li><span class="fa fa-map-pin"></span> <a href="https://goo.gl/maps/ojwCjTqRteiA4B9U7"> DE336, FBT University</a></li>
+                            <li><span class="fa fa-github"></span> <a href="https://github.com/ManhToan16/projectPRJ">Our Project</a></li>
+                            <li><span class="fa fa-map-pin"></span> <a href="https://goo.gl/maps/ojwCjTqRteiA4B9U7"> BE-207, FBT University</a></li>
                         </ul>
                     </section>
                     <ul class="copyright">
-                        <li> HLV </li>
+                        <li> HMT </li>
                     </ul>
                 </div>
             </footer>

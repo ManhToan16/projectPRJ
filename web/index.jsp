@@ -1,7 +1,7 @@
 <%-- 
     Document   : index
-    Created on : Jun 7, 2022, 9:18:12 PM
-    Author     : ACER
+    Created on : Oct 7, 2023, 9:18:12 PM
+    Author     : ManhToan
 --%>
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -142,6 +142,16 @@
                                 >
                             </p>
                             <cite>Charles W. Eliot</cite>
+                        </blockquote>
+                    </header>
+                    <header id="inner">
+                        <blockquote>
+                            <p>
+                                <i
+                                    >"A person who won’t read has no advantage over one who can’t read."</i
+                                >
+                            </p>
+                            <cite>Mark Twain</cite>
                         </blockquote>
                     </header>
 
@@ -288,19 +298,19 @@
                         <ul class="alt">
                             <li>
                                 <span class="fa fa-github"></span>
-                                <a href="https://github.com/nekon0/IIBOOK">Our Project</a>
+                                <a href="https://github.com/ManhToan16/projectPRJ">Our Project</a>
                             </li>
                             <li>
                                 <span class="fa fa-map-pin"></span>
                                 <a href="https://goo.gl/maps/ojwCjTqRteiA4B9U7">
-                                    DE336, FBT University</a
+                                    BE-207, FBT University</a
                                 >
                             </li>
                         </ul>
                     </section>
 
                     <ul class="copyright">
-                        <li>HLV</li>
+                        <li>HMT</li>
                     </ul>
                 </div>
             </footer>

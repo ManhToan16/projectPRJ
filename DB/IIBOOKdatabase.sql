@@ -199,8 +199,8 @@ GO
 
 --ALTER TABLE [dbo].[user]  WITH CHECK ADD  CONSTRAINT [CK_user_id] CHECK  (([user_id] like '[A-Z][A-Z][A-Z][1-9][0-9][0-9][0-9][0-9][FM]' OR [user_id] like '[A-Z]-[A-Z][1-9][0-9][0-9][0-9][0-9][FM]'))
 GO
-INSERT [dbo].[User] ([fullname], [gender], [dob], [email], [phone], [address], [username], [password], [is_super]) VALUES ( N'Vinh Nguyen', 1, CAST(N'2002-12-25' AS Date), N'vinhvn102@gmail.com', N'0382132025', N'FBT University ', N'admin', N'admin',1)
-INSERT [dbo].[User] ([fullname], [gender], [dob], [email], [phone], [address], [username], [password], [is_super]) VALUES ( N'Vinh Nguyen', 1, CAST(N'2002-12-25' AS Date), N'vinhvn102@gmail.com', N'0382132025', N'FBT University ', N'vinh', N'2002',0)
+INSERT [dbo].[User] ([fullname], [gender], [dob], [email], [phone], [address], [username], [password], [is_super]) VALUES ( N'Manh Toan', 1, CAST(N'2003-03-16' AS Date), N'toanluon507@gmail.com', N'0969146075', N'FBT University ', N'admin', N'admin',1)
+INSERT [dbo].[User] ([fullname], [gender], [dob], [email], [phone], [address], [username], [password], [is_super]) VALUES ( N'Manh Toan', 1, CAST(N'2003-03-16' AS Date), N'toanluon507@gmail.com', N'0969146075', N'FBT University ', N'toanluon12', N'toanluon12',0)
 GO
 Insert [dbo].[Category] ([name]) values (N'Crime, Thriller & Mystery'),(N'Fantasy, Horror'),(N'Science/Historical Fiction'),(N'Manga&LN')
 GO
@@ -258,17 +258,17 @@ INSERT [dbo].[Book] ( [title], [author], [categoryid], [quantity], [price], [is_
 GO
 SET IDENTITY_INSERT [dbo].[Order] ON 
 GO
-INSERT [dbo].[Order] ([id], [userid], [orderdate], [subtotal], [shipper], [total], [status]) VALUES (1, 2, CAST(N'2022-07-12' AS Date), CAST(61.76 AS Decimal(10, 2)), N'Fast Delivery', CAST(63.26 AS Decimal(10, 2)), N'Wait')
+INSERT [dbo].[Order] ([id], [userid], [orderdate], [subtotal], [shipper], [total], [status]) VALUES (1, 2, CAST(N'2023-10-13' AS Date), CAST(61.76 AS Decimal(10, 2)), N'Fast Delivery', CAST(63.26 AS Decimal(10, 2)), N'Wait')
 GO
-INSERT [dbo].[Order] ([id], [userid], [orderdate], [subtotal], [shipper], [total], [status]) VALUES (2, 2, CAST(N'2022-07-12' AS Date), CAST(81.53 AS Decimal(10, 2)), N'Free Delivery', CAST(81.53 AS Decimal(10, 2)), N'Done')
+INSERT [dbo].[Order] ([id], [userid], [orderdate], [subtotal], [shipper], [total], [status]) VALUES (2, 2, CAST(N'2023-10-13' AS Date), CAST(81.53 AS Decimal(10, 2)), N'Free Delivery', CAST(81.53 AS Decimal(10, 2)), N'Done')
 GO
 SET IDENTITY_INSERT [dbo].[Order] OFF
 GO
 SET IDENTITY_INSERT [dbo].[Customer] ON 
 GO
-INSERT [dbo].[Customer] ([id], [orderid], [userid], [name], [email], [phone], [address]) VALUES (1, 1, 2, N'Thanh Vinh', N'vinhvn102@gmail.com', N'0382132025', N'Thach Hoa, Thach That')
+INSERT [dbo].[Customer] ([id], [orderid], [userid], [name], [email], [phone], [address]) VALUES (1, 1, 2, N'Manh Toan', N'toanluon507@gmail.com', N'0969146075', N'Thach Hoa, Thach That')
 GO
-INSERT [dbo].[Customer] ([id], [orderid], [userid], [name], [email], [phone], [address]) VALUES (2, 2, 2, N'Vinh Nguyen', N'vinhvn102@gmail.com', N'0382132025', N'FBT University ')
+INSERT [dbo].[Customer] ([id], [orderid], [userid], [name], [email], [phone], [address]) VALUES (2, 2, 2, N'Vinh ', N'vinhvn102@gmail.com', N'0382132025', N'FBT University ')
 GO
 SET IDENTITY_INSERT [dbo].[Customer] OFF
 GO
