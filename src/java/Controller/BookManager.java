@@ -24,9 +24,10 @@ public class BookManager extends HttpServlet {
             throws ServletException, IOException {
         String service = request.getParameter("service");
         String bid = request.getParameter("bid");
+        String cid=request.getParameter("cid");
         CategoryDAO cd = new CategoryDAO();
-                ArrayList<Category> cates = cd.getCategories();
-                request.setAttribute("cates", cates);
+        ArrayList<Category> cates = cd.getCategories();
+        request.setAttribute("cates", cates);
         BookDAO dao = new BookDAO();
         if (service == null) {
             service = "control panel";
@@ -45,8 +46,34 @@ public class BookManager extends HttpServlet {
                 dao.deleteBook(Integer.parseInt(bid));
                 response.sendRedirect("BookManager");
                 break;
+                case "search":
+                    if(Integer.parseInt(cid)!=0){
+                    ArrayList<Book> searchResults = dao.getBooksByCid(cid);
+            request.setAttribute("books", searchResults);
+            request.getRequestDispatcher("/admin/bookmanager.jsp").forward(request, response);
+                    }else{
+                        ArrayList<Book> books = dao.getBooks();
+                String xpage = request.getParameter("xpage");
+                int page;
+                if (xpage == null) {
+                    page = 1;
+                } else {
+                    page = Integer.parseInt(xpage);
+                }
+                int size = books.size();
+                int numPage = (size % 5 == 0) ? (size / 5) : (size / 5 + 1);
+                int start = (page - 1) * 5;
+                int end = Math.min(size, start + 5);
+                ArrayList<Book> listpage = dao.getByPage(books, start, end);
+                request.setAttribute("xpage", page);
+                request.setAttribute("numPage", numPage);
+                request.setAttribute("books", listpage);
+                request.getRequestDispatcher("/admin/bookmanager.jsp").forward(request, response);
+                    }
+            break;
+
             default:
-                
+
                 ArrayList<Book> books = dao.getBooks();
                 String xpage = request.getParameter("xpage");
                 int page;
@@ -81,8 +108,8 @@ public class BookManager extends HttpServlet {
         String description = request.getParameter("description");
         String img = request.getParameter("image");
         CategoryDAO cd = new CategoryDAO();
-                ArrayList<Category> cates = cd.getCategories();
-                request.setAttribute("cates", cates);
+        ArrayList<Category> cates = cd.getCategories();
+        request.setAttribute("cates", cates);
         BookDAO dao = new BookDAO();
         switch (request.getParameter("in")) {
             case "Add":
@@ -97,7 +124,7 @@ public class BookManager extends HttpServlet {
                 }
                 break;
             case "Edit":
-                dao.editBook(Integer.parseInt(bid),title, author, cid, stock, price, issale, discount, img, description);
+                dao.editBook(Integer.parseInt(bid), title, author, cid, stock, price, issale, discount, img, description);
                 request.setAttribute("error", "Book Edited!");
                 request.setAttribute("service", "Edit");
                 request.setAttribute("s", new Book(Integer.parseInt(bid), title, author, cid, stock, price, issale, discount, img, description));

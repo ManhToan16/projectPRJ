@@ -82,7 +82,7 @@
                                                     <label class="form-control"
                                                            style="border:none;display: inline;">Category</label>
                                                     <select class="form-control" name="cid" style="display: inline; width: 100px;">
-                                                        <option value="">All</option>
+                                                        <option value="0">All</option>
                                                         <c:forEach var="cate" items="${cates}">
                                                             <option value="${cate.getId()}" ${cate.getId()==param['cid']?"selected":""}>${cate.getName()}</option>
                                                         </c:forEach>
